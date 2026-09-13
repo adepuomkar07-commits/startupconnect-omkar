@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Startups | StartupConnect</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
+            min-height: 100vh;
+        }
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            background: linear-gradient(180deg, #171126, #24163f);
+            color: white;
+            padding: 28px 18px;
+            z-index: 1000;
+            box-shadow: 8px 0 30px rgba(25, 15, 50, 0.08);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 12px;
+            margin-bottom: 40px;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .logo-icon i {
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #c9c3d8;
+            padding: 13px 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.25s ease;
+        }
+
+        .nav a i {
+            width: 20px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .nav a:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            transform: translateX(3px);
+        }
+
+        .nav a.active {
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
+            color: white;
+            box-shadow: 0 10px 25px rgba(109, 40, 217, 0.3);
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .main {
+            margin-left: 250px;
+            min-height: 100vh;
+            padding: 32px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .page-title h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .page-title p {
+            color: #7b8190;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        .add-btn {
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 13px 20px;
+            border-radius: 12px;
+            color: white;
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            box-shadow: 0 10px 25px rgba(109, 40, 217, 0.22);
+            transition: 0.25s ease;
+        }
+
+        .add-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(109, 40, 217, 0.28);
+        }
+
+        /* =========================
+           STARTUP GRID
+        ========================= */
+
+        .startup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 22px;
+        }
+
+        .startup-card {
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            border: 1px solid #edf0f5;
+            box-shadow: 0 8px 30px rgba(25, 35, 60, 0.06);
+            transition: 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .startup-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(25, 35, 60, 0.1);
+        }
+
+        .startup-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #7c3aed, #a855f7);
+        }
+
+        .startup-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+            color: #6d28d9;
+            margin-bottom: 17px;
+        }
+
+        .startup-icon i {
+            font-size: 23px;
+        }
+
+        .startup-card h3 {
+            font-size: 19px;
+            color: #20232b;
+            margin-bottom: 7px;
+        }
+
+        .industry {
+            display: inline-block;
+            padding: 6px 11px;
+            border-radius: 20px;
+            background: #f3efff;
+            color: #6d28d9;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .startup-description {
+            color: #747b8a;
+            font-size: 13px;
+            line-height: 1.7;
+            min-height: 65px;
+            margin-bottom: 20px;
+        }
+
+        .startup-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .startup-actions button {
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 9px;
+            padding: 9px 12px;
+            transition: 0.2s ease;
+        }
+
+        .select-btn {
+            background: #ede9fe;
+            color: #6d28d9;
+        }
+
+        .select-btn:hover {
+            background: #ddd6fe;
+        }
+
+        .edit-btn {
+            background: #eef2ff;
+            color: #4f46e5;
+        }
+
+        .edit-btn:hover {
+            background: #e0e7ff;
+        }
+
+        .delete-btn {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+
+        .delete-btn:hover {
+            background: #fee2e2;
+        }
+
+        .ai-btn {
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
+            color: white;
+        }
+
+        .ai-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        /* =========================
+           EMPTY STATE
+        ========================= */
+
+        .empty-state {
+            grid-column: 1 / -1;
+            background: white;
+            border-radius: 20px;
+            padding: 70px 25px;
+            text-align: center;
+            border: 1px solid #edf0f5;
+            box-shadow: 0 8px 30px rgba(25, 35, 60, 0.05);
+        }
+
+        .empty-state i {
+            font-size: 55px;
+            color: #8b5cf6;
+            margin-bottom: 20px;
+        }
+
+        .empty-state h2 {
+            color: #252936;
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .empty-state p {
+            color: #858b99;
+            font-size: 14px;
+        }
+
+        /* =========================
+           MODAL
+        ========================= */
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(17, 12, 29, 0.65);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            width: 100%;
+            max-width: 520px;
+            background: white;
+            border-radius: 22px;
+            padding: 30px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
+            animation: modalIn 0.25s ease;
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px) scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .modal-header h2 {
+            font-size: 22px;
+            color: #252936;
+        }
+
+        .close-btn {
+            width: 36px;
+            height: 36px;
+            border: none;
+            border-radius: 10px;
+            background: #f3f4f6;
+            color: #6b7280;
+            cursor: pointer;
+            font-size: 17px;
+            transition: 0.2s;
+        }
+
+        .close-btn:hover {
+            background: #ede9fe;
+            color: #6d28d9;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            border: 1px solid #e2e5eb;
+            outline: none;
+            border-radius: 11px;
+            padding: 12px 14px;
+            font-family: inherit;
+            font-size: 13px;
+            color: #252936;
+            transition: 0.2s ease;
+            background: #fff;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .cancel-btn {
+            border: none;
+            cursor: pointer;
+            background: #f3f4f6;
+            color: #4b5563;
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .save-btn {
+            border: none;
+            cursor: pointer;
+            color: white;
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .save-btn:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+
+        /* =========================
+           TOAST
+        ========================= */
+
+        .toast {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            min-width: 280px;
+            max-width: 400px;
+            padding: 15px 18px;
+            border-radius: 12px;
+            background: #1f2937;
+            color: white;
+            font-size: 13px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
+            transform: translateY(120px);
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s ease;
+            z-index: 3000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success {
+            background: #166534;
+        }
+
+        .toast.error {
+            background: #991b1b;
+        }
+
+        /* =========================
+           LOADING
+        ========================= */
+
+        .loading {
+            grid-column: 1 / -1;
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            text-align: center;
+            color: #6d28d9;
+        }
+
+        .loading i {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .loading p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 900px) {
+            .sidebar {
+                width: 210px;
+            }
+
+            .main {
+                margin-left: 210px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                padding: 18px;
+            }
+
+            .logo {
+                margin-bottom: 18px;
+            }
+
+            .nav {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            .topbar {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 18px;
+            }
+
+            .add-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .startup-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .nav {
+                grid-template-columns: 1fr;
+            }
+
+            .main {
+                padding: 15px;
+            }
+
+            .page-title h1 {
+                font-size: 23px;
+            }
+
+            .modal-content {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fa-solid fa-rocket"></i>
+            </div>
+
+            <div class="logo-text">
+                StartupConnect
+            </div>
+        </div>
+
+        <nav class="nav">
+
+            <a href="founder-dashboard.html">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="mystartups.html" class="active">
+                <i class="fa-solid fa-rocket"></i>
+                <span>My Startups</span>
+            </a>
+
+            <a href="evaluation.html">
+                <i class="fa-solid fa-chart-simple"></i>
+                <span>AI Evaluation</span>
+            </a>
+
+            <a href="ai.html">
+                <i class="fa-solid fa-robot"></i>
+                <span>AI Mentor</span>
+            </a>
+
+            <a href="profile.html">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+
+            <a href="settings.html">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+
+            <a href="#" id="logoutLink">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================= -->
+
+    <main class="main">
+
+        <div class="topbar">
+
+            <div class="page-title">
+                <h1>My Startups 🚀</h1>
+                <p>Manage your startups and evaluate your ideas with AI.</p>
+            </div>
+
+            <button class="add-btn" id="addStartupBtn">
+                <i class="fa-solid fa-plus"></i>
+                Add Startup
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             STARTUP GRID
+
+             IMPORTANT:
+             This is populated ONLY by
+             mystartups.js from MongoDB.
+        ========================= -->
+
+        <section class="startup-grid" id="startupGrid">
+
+            <div class="loading">
+                <i class="fa-solid fa-spinner fa-spin"></i>
+                <p>Loading your startups...</p>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         STARTUP MODAL
+    ========================= -->
+
+    <div class="modal" id="startupModal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2 id="modalTitle">
+                    Add New Startup
+                </h2>
+
+                <button
+                    type="button"
+                    class="close-btn"
+                    id="closeModalBtn">
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+            </div>
+
+
+            <form id="startupForm">
+
+                <!-- Used by mystartups.js when editing -->
+                <input
+                    type="hidden"
+                    id="startupId"
+                    name="startupId">
+
+
+                <div class="form-group">
+
+                    <label for="startupName">
+                        Startup Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="startupName"
+                        name="startupName"
+                        placeholder="Enter startup name"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="startupIndustry">
+                        Industry
+                    </label>
+
+                    <input
+                        type="text"
+                        id="startupIndustry"
+                        name="startupIndustry"
+                        placeholder="e.g. Technology, Healthcare, Education"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="startupDescription">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="startupDescription"
+                        name="startupDescription"
+                        placeholder="Describe your startup idea..."
+                        required></textarea>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                        id="cancelModalBtn">
+
+                        Cancel
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="save-btn"
+                        id="saveStartupBtn">
+
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        Save Startup
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TOAST
+    ========================= -->
+
+    <div
+        class="toast"
+        id="toast">
+    </div>
+
+
+    <!-- ==================================================
+         IMPORTANT
+
+         DO NOT PUT THE OLD INLINE STARTUP JAVASCRIPT HERE.
+
+         The old code using:
+
+         let startups = JSON.parse(localStorage...)
+         id: Date.now()
+         localStorage.setItem("startups"...)
+
+         has been completely removed.
+
+         Only mystartups.js controls this page.
+    ================================================== -->
+
+    <script src="config.js"></script>
+<script src="mystartups.js"></script>
+
+
+    <!-- =========================
+         LOGOUT
+    ========================= -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const logoutLink = document.getElementById("logoutLink");
+
+            if (logoutLink) {
+
+                logoutLink.addEventListener("click", function (event) {
+
+                    event.preventDefault();
+
+                    localStorage.removeItem("startupconnect_token");
+                    localStorage.removeItem("startupconnect_user");
+                    localStorage.removeItem("selectedStartup");
+                    localStorage.removeItem("latestEvaluation");
+                    localStorage.removeItem("latestEvaluationId");
+                    localStorage.removeItem("latestEvaluationStartupId");
+
+                    window.location.href = "login.html";
+
+                });
+
+            }
+
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Upload Pitch Deck</title>
+
+    <link rel="stylesheet" href="upload-pitch.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>📄 Upload Pitch Deck</h1>
+
+            <p>
+                Upload your Business Plan, Pitch Deck or Investor Presentation.
+            </p>
+
+            <form id="pitchForm">
+
+                <label>Startup Name</label>
+
+                <input type="text" id="startupName" placeholder="Startup Name">
+
+                <label>Select File</label>
+
+                <input type="file" id="pitchFile" accept=".pdf,.ppt,.pptx">
+
+                <button type="submit">
+
+                    🚀 Upload Pitch Deck
+
+                </button>
+
+            </form>
+
+            <div id="successBox"></div>
+
+        </div>
+
+    </div>
+
+    <script src="upload-pitch.js"></script>
+
+</body>
+
+</html>

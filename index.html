@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StartupConnect - Ideas Meet Investors</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #333;
+        }
+
+        /* Header */
+
+        header {
+            background: linear-gradient(135deg, #0f62fe, #2563eb);
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        header h2 {
+            font-size: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 500;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: #FFD700;
+        }
+
+        /* Hero */
+
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 70px 8%;
+            flex-wrap: wrap;
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .hero-text h1 {
+            font-size: 52px;
+            margin-bottom: 20px;
+            color: #0f172a;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .hero-text button {
+            padding: 16px 40px;
+            background: #0f62fe;
+            color: white;
+            border: none;
+            border-radius: 40px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .hero-text button:hover {
+            background: #0046d5;
+            transform: translateY(-3px);
+        }
+
+        .hero img {
+            width: 500px;
+            max-width: 100%;
+            border-radius: 20px;
+        }
+
+        /* Section */
+
+        section {
+            padding: 70px 8%;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #0f62fe;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
+            transition: .3s;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+        }
+
+        .card i {
+            font-size: 45px;
+            color: #0f62fe;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        /* CTA */
+
+        .cta {
+            background: linear-gradient(135deg, #2563eb, #4f46e5);
+            color: white;
+            text-align: center;
+            border-radius: 20px;
+            margin: 50px 8%;
+            padding: 60px;
+        }
+
+        .cta h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .cta button {
+            padding: 15px 35px;
+            font-size: 18px;
+            background: #FFD700;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+
+        .cta button:hover {
+            background: #ffc400;
+        }
+
+        /* Footer */
+
+        footer {
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 35px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin-top: 10px;
+            color: #ccc;
+        }
+
+        @media(max-width:900px) {
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero img {
+                margin-top: 40px;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+
+        <h2>🚀 StartupConnect</h2>
+
+        <nav>
+
+            <a href="index.html">Home</a>
+
+            <a href="#features">Features</a>
+
+            <a href="#process">Process</a>
+
+            <a href="investors.html">Investors</a>
+
+            <a href="contact.html">Contact</a>
+
+            <a href="login.html">Login</a>
+
+        </nav>
+
+    </header>
+
+    <section class="hero">
+
+        <div class="hero-text">
+
+            <h1>
+
+                Where Great Ideas Meet Great Investors
+
+            </h1>
+
+            <p>
+
+                StartupConnect is a platform where founders can register their startups, upload business ideas, receive
+                AI feedback, connect with mentors, and pitch to investors.
+
+            </p>
+
+            <a href="register.html">
+
+                <button>
+
+                    Get Started
+
+                </button>
+
+            </a>
+
+        </div>
+
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55?w=1000">
+
+    </section>
+
+    <section id="features">
+
+        <h2 class="title">
+
+            Platform Features
+
+        </h2>
+
+        <div class="cards">
+
+            <a href="share-idea.html" class="card-link">
+
+                <div class="card">
+
+                    <i class="fa-solid fa-lightbulb"></i>
+
+                    <h3>Share Startup Idea</h3>
+
+                    <p>Submit your innovative startup ideas.</p>
+
+                </div>
+
+            </a>
+
+            <a href="upload-pitch.html" class="card-link">
+
+                <div class="card">
+
+                    <i class="fa-solid fa-file-arrow-up"></i>
+
+                    <h3>Upload Pitch Deck</h3>
+
+                    <p>Upload your business presentation.</p>
+
+                </div>
+
+            </a>
+
+            <a href="ai-evaluation.html" class="card-link">
+
+                <div class="card">
+
+                    <i class="fa-solid fa-robot"></i>
+
+                    <h3>AI Evaluation</h3>
+
+                    <p>Receive AI-powered startup analysis.</p>
+
+                </div>
+
+            </a>
+
+            <a href="funding.html" class="card-link">
+
+                <div class="card">
+
+                    <i class="fa-solid fa-sack-dollar"></i>
+
+                    <h3>Funding</h3>
+
+                    <p>Track funding progress and investors.</p>
+
+                </div>
+
+            </a>
+
+        </div>
+
+    </section>
+
+    <section id="process">
+
+        <h2 class="title">
+
+            How StartupConnect Works
+
+        </h2>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <i class="fa-solid fa-user-plus"></i>
+
+                <h3>Register</h3>
+
+                <p>Create your founder account.</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-lightbulb"></i>
+
+                <h3>Share Idea</h3>
+
+                <p>Submit your startup idea.</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-robot"></i>
+
+                <h3>AI Review</h3>
+
+                <p>Get AI feedback and suggestions.</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-handshake"></i>
+
+                <h3>Meet Investors</h3>
+
+                <p>Connect with investors and mentors.</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="cta">
+
+        <h2>
+
+            Build the Next Unicorn Startup
+
+        </h2>
+
+        <p>
+
+            Join StartupConnect today and start your entrepreneurial journey.
+
+        </p>
+
+        <a href="register.html">
+
+            <button>
+
+                Join Now
+
+            </button>
+
+        </a>
+
+    </section>
+
+    <footer>
+
+        <h2>🚀 StartupConnect</h2>
+
+        <p>
+
+            Connecting Founders • Investors • Innovation
+
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

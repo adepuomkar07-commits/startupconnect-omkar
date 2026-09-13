@@ -1,0 +1,605 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+
+    font-family: 'Poppins', sans-serif;
+
+    background: #f4f7ff;
+
+    color: #111827;
+
+}
+
+
+.page {
+
+    min-height: 100vh;
+
+    display: flex;
+
+}
+
+
+/* =========================
+   LEFT SECTION
+========================= */
+
+.left-section {
+
+    width: 48%;
+
+    min-height: 100vh;
+
+    padding: 45px 7%;
+
+    color: white;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255,255,255,.15),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #0f62fe,
+            #4f46e5,
+            #7c3aed
+        );
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+}
+
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    font-size: 23px;
+
+    font-weight: 700;
+
+}
+
+
+.brand-icon {
+
+    width: 48px;
+
+    height: 48px;
+
+    border-radius: 14px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: rgba(255,255,255,.18);
+
+    backdrop-filter: blur(10px);
+
+    font-size: 23px;
+
+}
+
+
+.left-content {
+
+    max-width: 560px;
+
+}
+
+
+.badge {
+
+    display: inline-block;
+
+    padding: 8px 14px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,.15);
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    letter-spacing: 1px;
+
+}
+
+
+.left-content h1 {
+
+    font-size: clamp(42px, 5vw, 70px);
+
+    line-height: 1.05;
+
+    margin-top: 25px;
+
+}
+
+
+.left-content h1 span {
+
+    color: #bfdbfe;
+
+}
+
+
+.left-content > p {
+
+    margin-top: 25px;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    color: rgba(255,255,255,.85);
+
+}
+
+
+.features {
+
+    margin-top: 40px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 22px;
+
+}
+
+
+.feature {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+}
+
+
+.feature-icon {
+
+    width: 48px;
+
+    height: 48px;
+
+    flex-shrink: 0;
+
+    border-radius: 13px;
+
+    background: rgba(255,255,255,.15);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.feature h3 {
+
+    font-size: 15px;
+
+}
+
+
+.feature p {
+
+    margin-top: 3px;
+
+    font-size: 12px;
+
+    color: rgba(255,255,255,.7);
+
+}
+
+
+.copyright {
+
+    font-size: 12px;
+
+    color: rgba(255,255,255,.6);
+
+}
+
+
+
+/* =========================
+   RIGHT SECTION
+========================= */
+
+.right-section {
+
+    width: 52%;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 40px;
+
+}
+
+
+.register-card {
+
+    width: 100%;
+
+    max-width: 480px;
+
+    background: white;
+
+    padding: 42px;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 20px 60px rgba(15,23,42,.10);
+
+}
+
+
+.register-card h2 {
+
+    font-size: 28px;
+
+    color: #111827;
+
+}
+
+
+.subtitle {
+
+    margin-top: 8px;
+
+    margin-bottom: 30px;
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+}
+
+
+
+/* =========================
+   INPUTS
+========================= */
+
+.input-group {
+
+    margin-bottom: 19px;
+
+}
+
+
+.input-group label {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #374151;
+
+}
+
+
+.input-box {
+
+    position: relative;
+
+}
+
+
+.input-box > i {
+
+    position: absolute;
+
+    left: 15px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #2563eb;
+
+    z-index: 1;
+
+}
+
+
+.input-box input {
+
+    width: 100%;
+
+    height: 52px;
+
+    border: 1px solid #dbe2ea;
+
+    border-radius: 12px;
+
+    padding: 0 45px;
+
+    outline: none;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    transition: .2s;
+
+}
+
+
+.input-box input:focus {
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 4px rgba(37,99,235,.10);
+
+}
+
+
+.password-toggle {
+
+    position: absolute;
+
+    right: 12px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    background: transparent;
+
+    color: #6b7280;
+
+    cursor: pointer;
+
+    padding: 5px;
+
+}
+
+
+
+/* =========================
+   TERMS
+========================= */
+
+.terms {
+
+    display: flex;
+
+    gap: 9px;
+
+    align-items: flex-start;
+
+    margin: 5px 0 22px;
+
+    font-size: 12px;
+
+    color: #6b7280;
+
+}
+
+
+.terms input {
+
+    margin-top: 3px;
+
+}
+
+
+.terms a {
+
+    color: #2563eb;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+}
+
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.create-btn {
+
+    width: 100%;
+
+    height: 54px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0f62fe,
+            #4f46e5
+        );
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    transition: .25s;
+
+}
+
+
+.create-btn:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(37,99,235,.25);
+
+}
+
+
+.login-btn {
+
+    height: 50px;
+
+    border: 1px solid #dbe2ea;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    color: #2563eb;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: .2s;
+
+}
+
+
+.login-btn:hover {
+
+    background: #f4f7ff;
+
+}
+
+
+.divider {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 25px 0 15px;
+
+    color: #9ca3af;
+
+    font-size: 12px;
+
+}
+
+
+.divider::before,
+.divider::after {
+
+    content: "";
+
+    height: 1px;
+
+    flex: 1;
+
+    background: #e5e7eb;
+
+}
+
+
+.mobile-logo {
+
+    display: none;
+
+}
+
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+
+    .left-section {
+
+        display: none;
+
+    }
+
+    .right-section {
+
+        width: 100%;
+
+        padding: 20px;
+
+    }
+
+    .register-card {
+
+        padding: 30px 24px;
+
+    }
+
+    .mobile-logo {
+
+        display: flex;
+
+        justify-content: center;
+
+        margin-bottom: 20px;
+
+    }
+
+}

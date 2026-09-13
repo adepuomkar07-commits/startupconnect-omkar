@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>StartupConnect | My Ideas</title>
+
+
+    <!-- =====================================================
+         GOOGLE FONT
+    ====================================================== -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+
+    <!-- =====================================================
+         FONT AWESOME
+    ====================================================== -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+    <!-- =====================================================
+         SHARE IDEA CSS
+    ====================================================== -->
+
+    <link rel="stylesheet"
+          href="share-idea.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
+<aside class="sidebar">
+
+
+    <!-- BRAND -->
+
+    <div class="brand">
+
+        <div class="brand-icon">
+
+            <i class="fa-solid fa-rocket"></i>
+
+        </div>
+
+        <div>
+
+            <h2>StartupConnect</h2>
+
+            <span>Founder Portal</span>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
+
+    <nav class="navigation">
+
+
+        <p class="nav-heading">
+            MAIN MENU
+        </p>
+
+
+        <a href="dashboard.html"
+           class="nav-link">
+
+            <i class="fa-solid fa-chart-pie"></i>
+
+            Dashboard
+
+        </a>
+
+
+        <a href="my-startup.html"
+           class="nav-link">
+
+            <i class="fa-solid fa-building"></i>
+
+            My Startup
+
+        </a>
+
+
+        <a href="share-idea.html"
+           class="nav-link active">
+
+            <i class="fa-solid fa-lightbulb"></i>
+
+            My Ideas
+
+        </a>
+
+
+        <a href="ai-evaluation.html"
+           class="nav-link">
+
+            <i class="fa-solid fa-robot"></i>
+
+            AI Evaluation
+
+        </a>
+
+
+        <a href="upload-pitch.html"
+           class="nav-link">
+
+            <i class="fa-solid fa-file-arrow-up"></i>
+
+            Pitch Deck
+
+        </a>
+
+
+        <p class="nav-heading">
+            CONNECT
+        </p>
+
+
+        <a href="investors.html"
+           class="nav-link">
+
+            <i class="fa-solid fa-handshake"></i>
+
+            Investors
+
+        </a>
+
+
+        <a href="meetings.html"
+           class="nav-link">
+
+            <i class="fa-solid fa-calendar-days"></i>
+
+            Meetings
+
+        </a>
+
+
+        <a href="funding.html"
+           class="nav-link">
+
+            <i class="fa-solid fa-wallet"></i>
+
+            Funding
+
+        </a>
+
+
+        <p class="nav-heading">
+            ACCOUNT
+        </p>
+
+
+        <a href="profile.html"
+           class="nav-link">
+
+            <i class="fa-solid fa-user"></i>
+
+            Profile
+
+        </a>
+
+
+        <a href="settings.html"
+           class="nav-link">
+
+            <i class="fa-solid fa-gear"></i>
+
+            Settings
+
+        </a>
+
+
+    </nav>
+
+
+    <!-- =====================================================
+         LOGOUT
+    ====================================================== -->
+
+    <div class="sidebar-bottom">
+
+        <button
+            id="logoutBtn"
+            class="logout-btn">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Logout
+
+        </button>
+
+    </div>
+
+
+</aside>
+
+
+
+<!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
+
+<main class="main-content">
+
+
+    <!-- =====================================================
+         TOPBAR
+    ====================================================== -->
+
+    <header class="topbar">
+
+
+        <div class="topbar-left">
+
+
+            <button
+                id="menuBtn"
+                class="menu-btn">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+            <div>
+
+                <span class="page-label">
+                    FOUNDER PORTAL
+                </span>
+
+                <h1>
+                    My Ideas
+                </h1>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="topbar-right">
+
+
+            <button
+                class="notification-btn"
+                id="notificationBtn">
+
+                <i class="fa-regular fa-bell"></i>
+
+                <span></span>
+
+            </button>
+
+
+            <div class="user">
+
+
+                <div
+                    class="avatar"
+                    id="userAvatar">
+
+                    F
+
+                </div>
+
+
+                <div class="user-details">
+
+                    <strong id="founderName">
+                        Founder
+                    </strong>
+
+                    <small>
+                        Founder
+                    </small>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </header>
+
+
+
+    <!-- =====================================================
+         PAGE CONTENT
+    ====================================================== -->
+
+    <section class="content">
+
+
+        <!-- =================================================
+             PAGE INTRO
+        ================================================== -->
+
+        <div class="page-intro">
+
+
+            <div>
+
+                <span class="intro-badge">
+
+                    <i class="fa-solid fa-lightbulb"></i>
+
+                    IDEA LAB
+
+                </span>
+
+
+                <h2>
+                    Turn your ideas into opportunities
+                </h2>
+
+
+                <p>
+
+                    Create and manage your startup ideas
+                    before turning them into real businesses.
+
+                </p>
+
+            </div>
+
+
+            <button
+                id="newIdeaBtn"
+                class="new-idea-btn">
+
+                <i class="fa-solid fa-plus"></i>
+
+                New Idea
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             IDEA CREATION AREA
+        ================================================== -->
+
+        <div
+            id="ideaEditor"
+            class="idea-editor">
+
+
+            <!-- EDITOR HEADER -->
+
+            <div class="editor-header">
+
+
+                <div class="editor-title">
+
+
+                    <div class="editor-icon">
+
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Create Startup Idea
+                        </h3>
+
+                        <p>
+                            Describe your idea clearly.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="closeEditorBtn"
+                    class="close-editor">
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 IDEA FORM
+            ================================================== -->
+
+            <form
+                id="ideaForm"
+                class="idea-form">
+
+
+                <!-- IDEA TITLE -->
+
+                <div class="form-group full-width">
+
+                    <label for="ideaTitle">
+
+                        Idea Title
+
+                        <span>*</span>
+
+                    </label>
+
+
+                    <div class="input-box">
+
+                        <i class="fa-solid fa-lightbulb"></i>
+
+                        <input
+                            type="text"
+                            id="ideaTitle"
+                            maxlength="100"
+                            placeholder="Give your startup idea a powerful title"
+                            required>
+
+                    </div>
+
+
+                    <div class="field-info">
+
+                        <span>
+                            Make it short and memorable.
+                        </span>
+
+                        <strong id="titleCount">
+                            0 / 100
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CATEGORY -->
+
+                <div class="form-group">
+
+                    <label for="ideaCategory">
+
+                        Category
+
+                        <span>*</span>
+
+                    </label>
+
+
+                    <div class="input-box">
+
+                        <i class="fa-solid fa-layer-group"></i>
+
+                        <select
+                            id="ideaCategory"
+                            required>
+
+                            <option value="">
+                                Select category
+                            </option>
+
+                            <option value="Technology">
+                                Technology
+                            </option>
+
+                            <option value="AI">
+                                Artificial Intelligence
+                            </option>
+
+                            <option value="FinTech">
+                                FinTech
+                            </option>
+
+                            <option value="HealthTech">
+                                HealthTech
+                            </option>
+
+                            <option value="EdTech">
+                                EdTech
+                            </option>
+
+                            <option value="AgriTech">
+                                AgriTech
+                            </option>
+
+                            <option value="E-Commerce">
+                                E-Commerce
+                            </option>
+
+                            <option value="SaaS">
+                                SaaS
+                            </option>
+
+                            <option value="Social Impact">
+                                Social Impact
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- DEVELOPMENT STAGE -->
+
+                <div class="form-group">
+
+                    <label for="ideaStage">
+
+                        Idea Stage
+
+                        <span>*</span>
+
+                    </label>
+
+
+                    <div class="input-box">
+
+                        <i class="fa-solid fa-chart-line"></i>
+
+                        <select
+                            id="ideaStage"
+                            required>
+
+                            <option value="">
+                                Select stage
+                            </option>
+
+                            <option value="Concept">
+                                Concept
+                            </option>
+
+                            <option value="Research">
+                                Research
+                            </option>
+
+                            <option value="Prototype">
+                                Prototype
+                            </option>
+
+                            <option value="MVP">
+                                MVP
+                            </option>
+
+                            <option value="Early Product">
+                                Early Product
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     DESCRIPTION
+                ================================================== -->
+
+                <div class="form-group full-width">
+
+                    <label for="ideaDescription">
+
+                        Idea Description
+
+                        <span>*</span>
+
+                    </label>
+
+
+                    <textarea
+                        id="ideaDescription"
+                        rows="5"
+                        maxlength="1200"
+                        placeholder="Explain your idea in simple terms..."
+                        required></textarea>
+
+
+                    <div class="field-info">
+
+                        <span>
+                            Explain what your idea does.
+                        </span>
+
+                        <strong id="descriptionCount">
+                            0 / 1200
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     PROBLEM
+                ================================================== -->
+
+                <div class="form-group">
+
+                    <label for="ideaProblem">
+
+                        Problem
+
+                        <span>*</span>
+
+                    </label>
+
+
+                    <textarea
+                        id="ideaProblem"
+                        rows="6"
+                        placeholder="What problem does this idea solve?"
+                        required></textarea>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     SOLUTION
+                ================================================== -->
+
+                <div class="form-group">
+
+                    <label for="ideaSolution">
+
+                        Proposed Solution
+
+                        <span>*</span>
+
+                    </label>
+
+
+                    <textarea
+                        id="ideaSolution"
+                        rows="6"
+                        placeholder="How will your idea solve the problem?"
+                        required></textarea>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     TARGET CUSTOMERS
+                ================================================== -->
+
+                <div class="form-group">
+
+                    <label for="targetCustomers">
+
+                        Target Customers
+
+                        <span>*</span>
+
+                    </label>
+
+
+                    <div class="input-box">
+
+                        <i class="fa-solid fa-users"></i>
+
+                        <input
+                            type="text"
+                            id="targetCustomers"
+                            placeholder="e.g. Students, SMEs, doctors"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     BUSINESS MODEL
+                ================================================== -->
+
+                <div class="form-group">
+
+                    <label for="businessModel">
+
+                        Business Model
+
+                    </label>
+
+
+                    <div class="input-box">
+
+                        <i class="fa-solid fa-coins"></i>
+
+                        <select id="businessModel">
+
+                            <option value="">
+                                Select model
+                            </option>
+
+                            <option value="Subscription">
+                                Subscription
+                            </option>
+
+                            <option value="Freemium">
+                                Freemium
+                            </option>
+
+                            <option value="Marketplace">
+                                Marketplace
+                            </option>
+
+                            <option value="Commission">
+                                Commission
+                            </option>
+
+                            <option value="Advertising">
+                                Advertising
+                            </option>
+
+                            <option value="Direct Sales">
+                                Direct Sales
+                            </option>
+
+                            <option value="B2B">
+                                B2B
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     MARKET OPPORTUNITY
+                ================================================== -->
+
+                <div class="form-group">
+
+                    <label for="marketOpportunity">
+
+                        Market Opportunity
+
+                    </label>
+
+
+                    <div class="input-box">
+
+                        <i class="fa-solid fa-chart-column"></i>
+
+                        <input
+                            type="text"
+                            id="marketOpportunity"
+                            placeholder="e.g. ₹10 Crore market">
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     COMPETITIVE ADVANTAGE
+                ================================================== -->
+
+                <div class="form-group full-width">
+
+                    <label for="competitiveAdvantage">
+
+                        Competitive Advantage
+
+                    </label>
+
+
+                    <textarea
+                        id="competitiveAdvantage"
+                        rows="4"
+                        placeholder="What makes your idea different from existing solutions?"></textarea>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     ACTIONS
+                ================================================== -->
+
+                <div class="form-actions">
+
+
+                    <button
+                        type="button"
+                        id="cancelIdeaBtn"
+                        class="cancel-btn">
+
+                        Cancel
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        id="saveIdeaBtn"
+                        class="save-btn">
+
+                        <i class="fa-solid fa-floppy-disk"></i>
+
+                        Save Idea
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             SAVED IDEAS
+        ================================================== -->
+
+        <div class="ideas-section">
+
+
+            <div class="section-heading">
+
+
+                <div>
+
+                    <span class="small-label">
+                        YOUR COLLECTION
+                    </span>
+
+                    <h2>
+                        Saved Ideas
+                    </h2>
+
+                </div>
+
+
+                <span
+                    id="ideaCount"
+                    class="idea-count">
+
+                    0 Ideas
+
+                </span>
+
+
+            </div>
+
+
+
+            <!-- IDEAS WILL BE INSERTED HERE -->
+
+            <div
+                id="ideasContainer"
+                class="ideas-container">
+
+
+                <!-- JavaScript will create cards here -->
+
+
+                <div
+                    id="emptyState"
+                    class="empty-state">
+
+
+                    <div class="empty-icon">
+
+                        <i class="fa-regular fa-lightbulb"></i>
+
+                    </div>
+
+
+                    <h3>
+                        No ideas yet
+                    </h3>
+
+
+                    <p>
+
+                        Your saved startup ideas
+                        will appear here.
+
+                    </p>
+
+
+                    <button
+                        id="emptyNewIdeaBtn"
+                        class="empty-btn">
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        Create Your First Idea
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script src="share-idea.js"></script>
+
+
+</body>
+
+</html>

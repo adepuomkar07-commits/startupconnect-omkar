@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Meeting Scheduler</title>
+
+    <link rel="stylesheet" href="meetings.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>📅 Schedule Investor Meeting</h1>
+
+            <form id="meetingForm">
+
+                <label>Investor</label>
+
+                <input type="text" id="investor" readonly>
+
+                <label>Select Date</label>
+
+                <input type="date" id="meetingDate" required>
+
+                <label>Select Time</label>
+
+                <input type="time" id="meetingTime" required>
+
+                <label>Meeting Mode</label>
+
+                <select id="meetingMode">
+
+                    <option>Online</option>
+
+                    <option>Offline</option>
+
+                </select>
+
+                <label>Purpose</label>
+
+                <textarea id="purpose" rows="5" placeholder="Purpose of the meeting" required></textarea>
+
+                <button type="submit">
+
+                    📅 Book Meeting
+
+                </button>
+
+            </form>
+
+            <div id="successBox"></div>
+
+        </div>
+
+    </div>
+
+    <script src="meetings.js"></script>
+
+</body>
+
+</html>

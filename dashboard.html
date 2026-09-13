@@ -1,0 +1,1714 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>StartupConnect | Dashboard</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family: "Poppins", sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f8faff,
+                    #eef2ff
+                );
+
+            color: #172033;
+
+            min-height: 100vh;
+
+        }
+
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+
+            position: fixed;
+
+            left: 0;
+            top: 0;
+
+            width: 255px;
+
+            height: 100vh;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #111827,
+                    #17112d
+                );
+
+            padding: 25px 15px;
+
+            z-index: 1000;
+
+            box-shadow:
+                5px 0 25px rgba(0,0,0,.08);
+
+        }
+
+
+        .logo {
+
+            padding: 5px 15px 35px;
+
+            font-size: 24px;
+
+            font-weight: 800;
+
+            color: white;
+
+        }
+
+
+        .logo span {
+
+            color: #8b5cf6;
+
+        }
+
+
+        .menu-title {
+
+            color: #68748a;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            padding: 0 15px 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+
+        }
+
+
+        .nav {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 6px;
+
+        }
+
+
+        .nav a {
+
+            text-decoration: none;
+
+            color: #aeb7c8;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            padding: 13px 15px;
+
+            border-radius: 11px;
+
+            font-size: 13px;
+
+            font-weight: 500;
+
+            transition: .25s;
+
+        }
+
+
+        .nav a i {
+
+            width: 20px;
+
+            text-align: center;
+
+            font-size: 15px;
+
+        }
+
+
+        .nav a:hover,
+        .nav a.active {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #5b21b6
+                );
+
+            color: white;
+
+            transform: translateX(3px);
+
+        }
+
+
+        .logout {
+
+            position: absolute;
+
+            bottom: 25px;
+
+            left: 15px;
+
+            right: 15px;
+
+        }
+
+
+        .logout a {
+
+            color: #fca5a5;
+
+        }
+
+
+        .logout a:hover {
+
+            background: #7f1d1d;
+
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .main {
+
+            margin-left: 255px;
+
+            padding: 30px 40px;
+
+            min-height: 100vh;
+
+        }
+
+
+        /* =========================
+           TOPBAR
+        ========================= */
+
+        .topbar {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 35px;
+
+        }
+
+
+        .welcome h1 {
+
+            font-size: 29px;
+
+            font-weight: 800;
+
+        }
+
+
+        .welcome p {
+
+            margin-top: 5px;
+
+            color: #6b7280;
+
+            font-size: 13px;
+
+        }
+
+
+        .profile-area {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+        }
+
+
+        .profile-info {
+
+            text-align: right;
+
+        }
+
+
+        .profile-info strong {
+
+            display: block;
+
+            font-size: 13px;
+
+        }
+
+
+        .profile-info span {
+
+            font-size: 11px;
+
+            color: #7b8495;
+
+        }
+
+
+        .profile-avatar {
+
+            width: 48px;
+
+            height: 48px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #4f46e5
+                );
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            color: white;
+
+            font-size: 18px;
+
+            box-shadow:
+                0 5px 15px rgba(124,58,237,.25);
+
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6d28d9,
+                    #4f46e5
+                );
+
+            border-radius: 22px;
+
+            padding: 32px;
+
+            color: white;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 28px;
+
+            box-shadow:
+                0 15px 40px rgba(79,70,229,.20);
+
+        }
+
+
+        .hero h2 {
+
+            font-size: 24px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .hero p {
+
+            font-size: 13px;
+
+            color: #e0e7ff;
+
+            max-width: 600px;
+
+            line-height: 1.7;
+
+        }
+
+
+        .hero-button {
+
+            text-decoration: none;
+
+            background: white;
+
+            color: #5b21b6;
+
+            padding: 12px 20px;
+
+            border-radius: 10px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+
+        }
+
+
+        .hero-button:hover {
+
+            transform: translateY(-2px);
+
+        }
+
+
+        /* =========================
+           QUICK CARDS
+        ========================= */
+
+        .section-title {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 16px;
+
+        }
+
+
+        .section-title h2 {
+
+            font-size: 18px;
+
+        }
+
+
+        .section-title span {
+
+            font-size: 11px;
+
+            color: #7b8495;
+
+        }
+
+
+        .cards {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .card {
+
+            background: white;
+
+            padding: 22px;
+
+            border-radius: 17px;
+
+            text-decoration: none;
+
+            color: inherit;
+
+            box-shadow:
+                0 8px 28px rgba(30,41,59,.06);
+
+            border: 1px solid #edf0f5;
+
+            transition: .25s;
+
+        }
+
+
+        .card:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 15px 35px rgba(30,41,59,.10);
+
+        }
+
+
+        .card-icon {
+
+            width: 47px;
+
+            height: 47px;
+
+            border-radius: 13px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #ede9fe;
+
+            color: #7c3aed;
+
+            margin-bottom: 16px;
+
+            font-size: 18px;
+
+        }
+
+
+        .card h3 {
+
+            font-size: 15px;
+
+            margin-bottom: 6px;
+
+        }
+
+
+        .card p {
+
+            color: #7b8495;
+
+            font-size: 11px;
+
+            line-height: 1.6;
+
+        }
+
+
+        .card-arrow {
+
+            margin-top: 15px;
+
+            color: #7c3aed;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+        }
+
+
+        /* =========================
+           BOTTOM GRID
+        ========================= */
+
+        .bottom-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1.5fr 1fr;
+
+            gap: 22px;
+
+        }
+
+
+        .panel {
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 23px;
+
+            box-shadow:
+                0 8px 28px rgba(30,41,59,.06);
+
+            border: 1px solid #edf0f5;
+
+        }
+
+
+        /* STARTUP PREVIEW */
+
+        .startup-item {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 15px 0;
+
+            border-bottom: 1px solid #eef0f4;
+
+        }
+
+
+        .startup-item:last-child {
+
+            border-bottom: none;
+
+        }
+
+
+        .startup-left {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+        }
+
+
+        .startup-icon {
+
+            width: 42px;
+
+            height: 42px;
+
+            border-radius: 11px;
+
+            background: #f3e8ff;
+
+            color: #7c3aed;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        .startup-left strong {
+
+            display: block;
+
+            font-size: 13px;
+
+        }
+
+
+        .startup-left span {
+
+            font-size: 10px;
+
+            color: #7b8495;
+
+        }
+
+
+        .startup-score {
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            color: #7c3aed;
+
+        }
+
+
+        /* ACTIONS */
+
+        .actions {
+
+            display: grid;
+
+            gap: 12px;
+
+        }
+
+
+        .action {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            padding: 14px;
+
+            border-radius: 12px;
+
+            background: #f8f7ff;
+
+            text-decoration: none;
+
+            color: #374151;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            transition: .2s;
+
+        }
+
+
+        .action:hover {
+
+            background: #ede9fe;
+
+            color: #6d28d9;
+
+        }
+
+
+        .action i {
+
+            width: 35px;
+
+            height: 35px;
+
+            border-radius: 9px;
+
+            background: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #7c3aed;
+
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media(max-width:1100px) {
+
+            .cards {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+            .bottom-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+
+        @media(max-width:750px) {
+
+            .sidebar {
+
+                width: 70px;
+
+                padding: 20px 8px;
+
+            }
+
+
+            .logo {
+
+                font-size: 0;
+
+                text-align: center;
+
+                padding: 5px 0 30px;
+
+            }
+
+
+            .logo::after {
+
+                content: "S";
+
+                font-size: 24px;
+
+                color: #8b5cf6;
+
+            }
+
+
+            .menu-title {
+
+                display: none;
+
+            }
+
+
+            .nav a {
+
+                justify-content: center;
+
+                padding: 13px 8px;
+
+            }
+
+
+            .nav a span {
+
+                display: none;
+
+            }
+
+
+            .logout a span {
+
+                display: none;
+
+            }
+
+
+            .logout a {
+
+                justify-content: center;
+
+            }
+
+
+            .main {
+
+                margin-left: 70px;
+
+                padding: 20px;
+
+            }
+
+
+            .hero {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 20px;
+
+            }
+
+
+            .profile-info {
+
+                display: none;
+
+            }
+
+        }
+
+
+        @media(max-width:500px) {
+
+            .cards {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .welcome h1 {
+
+                font-size: 22px;
+
+            }
+
+
+            .topbar {
+
+                margin-bottom: 25px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
+
+    <aside class="sidebar">
+
+
+        <div class="logo">
+
+            Startup<span>Connect</span>
+
+        </div>
+
+
+        <div class="menu-title">
+            Main Menu
+        </div>
+
+
+        <nav class="nav">
+
+
+            <a href="dashboard.html"
+               class="active">
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <a href="founder-dashboard.html">
+
+                <i class="fa-solid fa-chart-pie"></i>
+
+                <span>Founder Dashboard</span>
+
+            </a>
+
+
+            <a href="mystartups.html">
+
+                <i class="fa-solid fa-rocket"></i>
+
+                <span>My Startups</span>
+
+            </a>
+
+
+            <a href="ai.html">
+
+                <i class="fa-solid fa-robot"></i>
+
+                <span>AI Assistant</span>
+
+            </a>
+
+
+            <a href="evaluation.html">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <span>AI Evaluation</span>
+
+            </a>
+
+
+            <a href="profile.html">
+
+                <i class="fa-solid fa-user"></i>
+
+                <span>Founder Profile</span>
+
+            </a>
+
+
+            <a href="settings.html">
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span>Settings</span>
+
+            </a>
+
+        </nav>
+
+
+        <div class="logout">
+
+            <a href="login.html">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>Logout</span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <main class="main">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+
+            <div class="welcome">
+
+                <h1>
+                    Welcome back, Founder 👋
+                </h1>
+
+                <p>
+                    Manage your startups, AI tools and evaluations from one place.
+                </p>
+
+            </div>
+
+
+            <a href="profile.html"
+               class="profile-area"
+               style="text-decoration:none;color:inherit;">
+
+
+                <div class="profile-info">
+
+                    <strong id="founderName">
+                        Founder
+                    </strong>
+
+                    <span>
+                        Startup Founder
+                    </span>
+
+                </div>
+
+
+                <div class="profile-avatar">
+
+                    <i class="fa-solid fa-user"></i>
+
+                </div>
+
+
+            </a>
+
+
+        </header>
+
+
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+
+            <div>
+
+                <h2>
+                    Build. Evaluate. Grow. 🚀
+                </h2>
+
+                <p>
+                    Use StartupConnect's intelligent tools to manage your startup,
+                    evaluate your business idea and get AI-powered guidance.
+                </p>
+
+            </div>
+
+
+            <a href="founder-dashboard.html"
+               class="hero-button">
+
+                Open Founder Dashboard
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+
+        </section>
+
+
+
+        <!-- QUICK ACCESS -->
+
+        <div class="section-title">
+
+            <h2>
+                Quick Access
+            </h2>
+
+            <span>
+                Your startup tools
+            </span>
+
+        </div>
+
+
+        <section class="cards">
+
+
+            <!-- MY STARTUPS -->
+
+            <a href="mystartups.html"
+               class="card">
+
+
+                <div class="card-icon">
+
+                    <i class="fa-solid fa-rocket"></i>
+
+                </div>
+
+
+                <h3>
+                    My Startups
+                </h3>
+
+
+                <p>
+                    Create, manage and view all your startup ideas.
+                </p>
+
+
+                <div class="card-arrow">
+
+                    Open My Startups
+                    →
+                    
+                </div>
+
+
+            </a>
+
+
+
+            <!-- AI -->
+
+            <a href="ai.html"
+               class="card">
+
+
+                <div class="card-icon">
+
+                    <i class="fa-solid fa-robot"></i>
+
+                </div>
+
+
+                <h3>
+                    AI Assistant
+                </h3>
+
+
+                <p>
+                    Ask AI for startup strategy, marketing and growth advice.
+                </p>
+
+
+                <div class="card-arrow">
+
+                    Ask AI
+                    →
+
+                </div>
+
+
+            </a>
+
+
+
+            <!-- EVALUATION -->
+
+            <a href="evaluation.html"
+               class="card">
+
+
+                <div class="card-icon">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                </div>
+
+
+                <h3>
+                    AI Evaluation
+                </h3>
+
+
+                <p>
+                    Analyze your startup's market, innovation and feasibility.
+                </p>
+
+
+                <div class="card-arrow">
+
+                    Evaluate Startup
+                    →
+
+                </div>
+
+
+            </a>
+
+
+
+            <!-- FOUNDER -->
+
+            <a href="founder-dashboard.html"
+               class="card">
+
+
+                <div class="card-icon">
+
+                    <i class="fa-solid fa-user-tie"></i>
+
+                </div>
+
+
+                <h3>
+                    Founder Dashboard
+                </h3>
+
+
+                <p>
+                    See your startups, scores and recent AI evaluations.
+                </p>
+
+
+                <div class="card-arrow">
+
+                    Open Dashboard
+                    →
+
+                </div>
+
+
+            </a>
+
+
+        </section>
+
+
+
+        <!-- BOTTOM -->
+
+        <section class="bottom-grid">
+
+
+            <!-- STARTUPS -->
+
+            <div class="panel">
+
+
+                <div class="section-title">
+
+                    <h2>
+                        Recent Startups
+                    </h2>
+
+                    <a href="mystartups.html">
+                        View All
+                    </a>
+
+                </div>
+
+
+                <div id="startupPreview">
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- QUICK ACTIONS -->
+
+            <div class="panel">
+
+
+                <div class="section-title">
+
+                    <h2>
+                        Quick Actions
+                    </h2>
+
+                </div>
+
+
+                <div class="actions">
+
+
+                    <a href="mystartups.html"
+                       class="action">
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        <span>
+                            Create New Startup
+                        </span>
+
+                    </a>
+
+
+                    <a href="evaluation.html"
+                       class="action">
+
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                        <span>
+                            Run AI Evaluation
+                        </span>
+
+                    </a>
+
+
+                    <a href="ai.html"
+                       class="action">
+
+                        <i class="fa-solid fa-comments"></i>
+
+                        <span>
+                            Talk to Startup AI
+                        </span>
+
+                    </a>
+
+
+                    <a href="profile.html"
+                       class="action">
+
+                        <i class="fa-solid fa-user-pen"></i>
+
+                        <span>
+                            Edit Founder Profile
+                        </span>
+
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+<script>
+
+/* =========================================
+   AUTHENTICATION
+========================================= */
+
+const token =
+    localStorage.getItem("startupconnect_token");
+
+
+/*
+ * No JWT = user is not logged in.
+ */
+
+if (!token) {
+
+    window.location.href = "login.html";
+
+}
+
+
+/* =========================================
+   LOAD USER PROFILE FROM BACKEND
+========================================= */
+
+async function loadProfile() {
+
+    try {
+
+        const response = await fetch(
+            "/api/profile",
+            {
+                method: "GET",
+
+                headers: {
+                    "Authorization": "Bearer " + token
+                }
+            }
+        );
+
+
+        const data = await response.json();
+
+
+        /* ================================
+           TOKEN INVALID / EXPIRED
+        ================================= */
+
+        if (!response.ok || !data.success) {
+
+            localStorage.removeItem(
+                "startupconnect_token"
+            );
+
+            localStorage.removeItem(
+                "startupconnect_user"
+            );
+
+            localStorage.removeItem(
+                "loggedIn"
+            );
+
+            localStorage.removeItem(
+                "isLoggedIn"
+            );
+
+            localStorage.removeItem(
+                "currentUser"
+            );
+
+            window.location.href =
+                "login.html";
+
+            return;
+        }
+
+
+        /* ================================
+           USER DATA
+        ================================= */
+
+        const user = data.user;
+
+
+        /* ================================
+           DISPLAY NAME
+        ================================= */
+
+        const founderName =
+            document.getElementById(
+                "founderName"
+            );
+
+
+        if (founderName) {
+
+            founderName.textContent =
+                user.name || "Founder";
+
+        }
+
+
+        /* ================================
+           UPDATE WELCOME MESSAGE
+        ================================= */
+
+        const welcomeHeading =
+            document.querySelector(
+                ".welcome h1"
+            );
+
+
+        if (welcomeHeading) {
+
+            welcomeHeading.textContent =
+                `Welcome back, ${user.name || "Founder"} 👋`;
+
+        }
+
+
+        /* ================================
+           SAVE LATEST USER DATA
+        ================================= */
+
+        localStorage.setItem(
+            "startupconnect_user",
+            JSON.stringify(user)
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Profile loading error:",
+            error
+        );
+
+
+        /*
+         * Server unreachable.
+         * Do not immediately delete the token,
+         * because the server may temporarily be down.
+         */
+
+    }
+
+}
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+const logoutLink =
+    document.querySelector(
+        ".logout a"
+    );
+
+
+if (logoutLink) {
+
+    logoutLink.addEventListener(
+        "click",
+        function (event) {
+
+            event.preventDefault();
+
+
+            /* Remove authentication */
+
+            localStorage.removeItem(
+                "startupconnect_token"
+            );
+
+            localStorage.removeItem(
+                "startupconnect_user"
+            );
+
+            localStorage.removeItem(
+                "loggedIn"
+            );
+
+            localStorage.removeItem(
+                "isLoggedIn"
+            );
+
+            localStorage.removeItem(
+                "currentUser"
+            );
+
+
+            /* Go to login */
+
+            window.location.href =
+                "login.html";
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   LOAD STARTUPS
+========================================= */
+
+const startups =
+    JSON.parse(
+        localStorage.getItem(
+            "startups"
+        )
+    ) || [];
+
+
+const latestEvaluation =
+    JSON.parse(
+        localStorage.getItem(
+            "latestEvaluation"
+        )
+    );
+
+
+/* =========================================
+   STARTUP PREVIEW
+========================================= */
+
+const preview =
+    document.getElementById(
+        "startupPreview"
+    );
+
+
+if (startups.length === 0) {
+
+    preview.innerHTML = `
+
+        <div style="
+            text-align:center;
+            padding:35px 10px;
+            color:#7b8495;
+        ">
+
+            <i
+                class="fa-solid fa-rocket"
+                style="
+                    font-size:35px;
+                    color:#c4b5fd;
+                    margin-bottom:12px;
+                ">
+            </i>
+
+            <p>
+                No startups created yet.
+            </p>
+
+            <a
+                href="mystartups.html"
+                style="
+                    display:inline-block;
+                    margin-top:10px;
+                    color:#7c3aed;
+                    text-decoration:none;
+                    font-size:12px;
+                    font-weight:700;
+                ">
+
+                Create your first startup →
+
+            </a>
+
+        </div>
+
+    `;
+
+} else {
+
+    startups
+        .slice(0, 4)
+        .forEach(function(startup) {
+
+            let score = "--";
+
+
+            if (
+                latestEvaluation &&
+                latestEvaluation.startupId ==
+                startup.id
+            ) {
+
+                score =
+                    latestEvaluation.overall +
+                    "/100";
+
+            }
+
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "startup-item";
+
+
+            item.innerHTML = `
+
+                <div class="startup-left">
+
+                    <div class="startup-icon">
+
+                        <i class="fa-solid fa-rocket"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            ${startup.name || "Unnamed Startup"}
+                        </strong>
+
+                        <span>
+                            ${startup.industry || "Startup"}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="startup-score">
+
+                    ${score}
+
+                </div>
+
+            `;
+
+
+            preview.appendChild(item);
+
+        });
+
+}
+
+
+/* =========================================
+   START PROFILE REQUEST
+========================================= */
+
+loadProfile();
+
+</script>
+
+
+</body>
+
+</html>

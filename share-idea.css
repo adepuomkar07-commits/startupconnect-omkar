@@ -1,0 +1,1063 @@
+/* =========================================================
+   STARTUPCONNECT — MY IDEAS
+   PREMIUM UI
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #f5f7fb;
+    color: #172033;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 260px;
+    height: 100vh;
+    background: #ffffff;
+    border-right: 1px solid #e8ecf3;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    transition: 0.3s ease;
+}
+
+.brand {
+    height: 90px;
+    padding: 20px 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid #eef1f6;
+}
+
+.brand-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 13px;
+    background: linear-gradient(135deg, #0f62fe, #6366f1);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
+}
+
+.brand h2 {
+    font-size: 16px;
+    font-weight: 800;
+    color: #172033;
+}
+
+.brand span {
+    display: block;
+    margin-top: 2px;
+    color: #8b95a7;
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.navigation {
+    flex: 1;
+    padding: 22px 14px;
+    overflow-y: auto;
+}
+
+.nav-heading {
+    padding: 0 12px;
+    margin: 15px 0 9px;
+    color: #9aa4b5;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+}
+
+.nav-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-height: 46px;
+    padding: 0 13px;
+    margin-bottom: 4px;
+    border-radius: 11px;
+    color: #687386;
+    font-size: 13px;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+
+.nav-link i {
+    width: 20px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.nav-link:hover {
+    background: #f3f6ff;
+    color: #2563eb;
+}
+
+.nav-link.active {
+    background: linear-gradient(135deg, #eff5ff, #eef2ff);
+    color: #2563eb;
+    font-weight: 600;
+}
+
+.nav-link.active::before {
+    content: "";
+    position: absolute;
+    left: -14px;
+    width: 3px;
+    height: 25px;
+    border-radius: 0 5px 5px 0;
+    background: #2563eb;
+}
+
+
+/* =========================================================
+   SIDEBAR BOTTOM
+========================================================= */
+
+.sidebar-bottom {
+    padding: 16px;
+    border-top: 1px solid #eef1f6;
+}
+
+.logout-btn {
+    width: 100%;
+    height: 45px;
+    border: none;
+    background: #fff2f2;
+    color: #ef4444;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.logout-btn:hover {
+    background: #fee2e2;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main-content {
+    margin-left: 260px;
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   TOPBAR
+========================================================= */
+
+.topbar {
+    height: 90px;
+    padding: 0 35px;
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid #e9edf3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 500;
+    backdrop-filter: blur(15px);
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.page-label {
+    color: #9aa4b5;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+}
+
+.topbar h1 {
+    margin-top: 3px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #172033;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+}
+
+
+/* =========================================================
+   MENU BUTTON
+========================================================= */
+
+.menu-btn {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #e5e9f0;
+    background: white;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   NOTIFICATION
+========================================================= */
+
+.notification-btn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #edf0f5;
+    border-radius: 10px;
+    background: white;
+    color: #647084;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.notification-btn span {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 6px;
+    height: 6px;
+    background: #ef4444;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+
+
+/* =========================================================
+   USER
+========================================================= */
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.user-details strong {
+    display: block;
+    color: #172033;
+    font-size: 12px;
+}
+
+.user-details small {
+    display: block;
+    color: #9aa4b5;
+    font-size: 9px;
+    margin-top: 2px;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.content {
+    padding: 35px;
+}
+
+
+/* =========================================================
+   PAGE INTRO
+========================================================= */
+
+.page-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 28px;
+}
+
+.intro-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 11px;
+    border-radius: 30px;
+    background: #eef4ff;
+    color: #2563eb;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.page-intro h2 {
+    margin-top: 10px;
+    font-size: 28px;
+    color: #172033;
+}
+
+.page-intro p {
+    margin-top: 5px;
+    color: #8a94a6;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   NEW IDEA BUTTON
+========================================================= */
+
+.new-idea-btn {
+    min-width: 135px;
+    height: 45px;
+    border: none;
+    border-radius: 11px;
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+    color: white;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.18);
+    transition: 0.2s;
+}
+
+.new-idea-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(37, 99, 235, 0.25);
+}
+
+
+/* =========================================================
+   IDEA EDITOR
+========================================================= */
+
+.idea-editor {
+    background: #ffffff;
+    border: 1px solid #e8edf5;
+    border-radius: 18px;
+    padding: 26px;
+    margin-bottom: 35px;
+    box-shadow: 0 10px 35px rgba(15, 23, 42, 0.04);
+    display: none;
+}
+
+.idea-editor.show {
+    display: block;
+    animation: editorOpen 0.3s ease;
+}
+
+@keyframes editorOpen {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   EDITOR HEADER
+========================================================= */
+
+.editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    margin-bottom: 23px;
+    border-bottom: 1px solid #edf0f5;
+}
+
+.editor-title {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.editor-icon {
+    width: 43px;
+    height: 43px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #f0f4ff, #f3efff);
+    color: #6366f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.editor-title h3 {
+    font-size: 16px;
+}
+
+.editor-title p {
+    margin-top: 3px;
+    color: #9aa4b5;
+    font-size: 9px;
+}
+
+.close-editor {
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 9px;
+    background: #f5f7fa;
+    color: #7a8495;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.close-editor:hover {
+    background: #feecec;
+    color: #ef4444;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.idea-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.form-group label {
+    margin-bottom: 8px;
+    color: #344054;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.form-group label span {
+    color: #ef4444;
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.input-box {
+    position: relative;
+}
+
+.input-box > i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9aa4b5;
+    font-size: 12px;
+    pointer-events: none;
+}
+
+.input-box input,
+.input-box select {
+    width: 100%;
+    height: 46px;
+    border: 1px solid #e1e6ef;
+    background: #fbfcfe;
+    border-radius: 10px;
+    padding: 0 14px 0 40px;
+    outline: none;
+    color: #344054;
+    font-size: 10px;
+    transition: 0.2s;
+}
+
+.input-box input::placeholder {
+    color: #a8b0bd;
+}
+
+.input-box input:focus,
+.input-box select:focus,
+textarea:focus {
+    background: #ffffff;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+
+/* =========================================================
+   TEXTAREA
+========================================================= */
+
+textarea {
+    width: 100%;
+    border: 1px solid #e1e6ef;
+    background: #fbfcfe;
+    border-radius: 10px;
+    padding: 14px;
+    outline: none;
+    resize: vertical;
+    color: #344054;
+    font-size: 10px;
+    line-height: 1.7;
+    transition: 0.2s;
+}
+
+textarea::placeholder {
+    color: #a8b0bd;
+}
+
+
+/* =========================================================
+   FIELD INFO
+========================================================= */
+
+.field-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 7px;
+    color: #a0a8b6;
+    font-size: 8px;
+}
+
+.field-info strong {
+    color: #667085;
+}
+
+
+/* =========================================================
+   FORM ACTIONS
+========================================================= */
+
+.form-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 8px;
+}
+
+.cancel-btn,
+.save-btn {
+    min-width: 135px;
+    height: 45px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.cancel-btn {
+    border: 1px solid #e1e6ef;
+    background: #ffffff;
+    color: #667085;
+}
+
+.cancel-btn:hover {
+    background: #f8fafc;
+}
+
+.save-btn {
+    border: none;
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+    color: white;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.18);
+}
+
+.save-btn:hover {
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   SAVED IDEAS SECTION
+========================================================= */
+
+.ideas-section {
+    margin-top: 10px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.small-label {
+    color: #9aa4b5;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.section-heading h2 {
+    margin-top: 4px;
+    font-size: 21px;
+}
+
+.idea-count {
+    padding: 7px 13px;
+    border-radius: 20px;
+    background: #eef4ff;
+    color: #2563eb;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   IDEAS GRID
+========================================================= */
+
+.ideas-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+
+/* =========================================================
+   IDEA CARD
+========================================================= */
+
+.idea-card {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid #e9edf4;
+    border-radius: 16px;
+    padding: 22px;
+    overflow: hidden;
+    transition: 0.25s ease;
+    box-shadow: 0 5px 20px rgba(15, 23, 42, 0.025);
+}
+
+.idea-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #2563eb, #7c3aed);
+}
+
+.idea-card:hover {
+    transform: translateY(-5px);
+    border-color: #dce5fb;
+    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+}
+
+
+/* =========================================================
+   IDEA CARD HEADER
+========================================================= */
+
+.idea-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.idea-card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+    background: #eef4ff;
+    color: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.idea-card-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.idea-action {
+    width: 31px;
+    height: 31px;
+    border: none;
+    border-radius: 8px;
+    background: #f5f7fa;
+    color: #7b8494;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.idea-action:hover {
+    background: #edf3ff;
+    color: #2563eb;
+}
+
+.idea-action.delete:hover {
+    background: #fff0f0;
+    color: #ef4444;
+}
+
+
+/* =========================================================
+   IDEA CARD CONTENT
+========================================================= */
+
+.idea-card h3 {
+    font-size: 15px;
+    line-height: 1.4;
+    color: #172033;
+    margin-bottom: 8px;
+}
+
+.idea-card-description {
+    color: #7d8798;
+    font-size: 10px;
+    line-height: 1.7;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   IDEA TAGS
+========================================================= */
+
+.idea-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 15px;
+}
+
+.idea-tag {
+    padding: 5px 8px;
+    border-radius: 6px;
+    background: #f3f5f9;
+    color: #697386;
+    font-size: 8px;
+    font-weight: 600;
+}
+
+.idea-tag.primary {
+    background: #eef4ff;
+    color: #2563eb;
+}
+
+
+/* =========================================================
+   IDEA CARD FOOTER
+========================================================= */
+
+.idea-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid #eef1f5;
+    color: #9aa4b5;
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.empty-state {
+    grid-column: 1 / -1;
+    min-height: 330px;
+    background: #ffffff;
+    border: 1px dashed #d9dfeb;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 35px;
+}
+
+.empty-icon {
+    width: 65px;
+    height: 65px;
+    border-radius: 20px;
+    background: #f0f4ff;
+    color: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.empty-state h3 {
+    font-size: 16px;
+    color: #344054;
+}
+
+.empty-state p {
+    margin-top: 6px;
+    color: #9aa4b5;
+    font-size: 10px;
+}
+
+.empty-btn {
+    margin-top: 18px;
+    height: 40px;
+    padding: 0 18px;
+    border: none;
+    border-radius: 9px;
+    background: #eef4ff;
+    color: #2563eb;
+    cursor: pointer;
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.empty-btn:hover {
+    background: #e3ecff;
+}
+
+
+/* =========================================================
+   SUCCESS MESSAGE
+========================================================= */
+
+.success-message {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 18px;
+    background: #ffffff;
+    border: 1px solid #d8f3e8;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.12);
+    color: #059669;
+    font-size: 11px;
+    font-weight: 600;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE — 1200px
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    .ideas-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE — 1100px
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .sidebar {
+        width: 225px;
+    }
+
+    .main-content {
+        margin-left: 225px;
+    }
+
+    .content {
+        padding: 25px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE — 900px
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .sidebar {
+        transform: translateX(-100%);
+        width: 260px;
+        box-shadow: 10px 0 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .topbar {
+        height: 75px;
+        padding: 0 20px;
+    }
+
+    .user-details {
+        display: none;
+    }
+
+    .content {
+        padding: 22px 18px;
+    }
+
+    .idea-form {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width {
+        grid-column: auto;
+    }
+
+    .form-actions {
+        grid-column: auto;
+    }
+
+    .page-intro {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .new-idea-btn {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE — 650px
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .ideas-container {
+        grid-template-columns: 1fr;
+    }
+
+    .content {
+        padding: 18px 13px;
+    }
+
+    .idea-editor {
+        padding: 18px;
+    }
+
+    .page-intro h2 {
+        font-size: 23px;
+    }
+
+    .topbar h1 {
+        font-size: 19px;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .cancel-btn,
+    .save-btn {
+        width: 100%;
+    }
+}

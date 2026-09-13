@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Verify Code | StartupConnect</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    >
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            font-family: "Poppins", sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at top left,
+                    #7c3aed,
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at bottom right,
+                    #4f46e5,
+                    transparent 35%
+                ),
+                #0f172a;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 430px;
+            background: white;
+            border-radius: 22px;
+            padding: 40px;
+
+            box-shadow:
+                0 25px 70px
+                rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 25px;
+            font-weight: 800;
+            color: #172033;
+            margin-bottom: 25px;
+        }
+
+        .logo span {
+            color: #7c3aed;
+        }
+
+        .icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #ede9fe;
+            color: #7c3aed;
+            font-size: 27px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 22px;
+            color: #172033;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            font-size: 10px;
+            line-height: 1.7;
+            margin: 10px 0 25px;
+        }
+
+        .email-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 9px;
+            padding: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #64748b;
+            font-size: 9px;
+        }
+
+        .email-box strong {
+            color: #334155;
+        }
+
+        label {
+            display: block;
+            font-size: 9px;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 7px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+
+            border: 1px solid #dbe1ea;
+            border-radius: 10px;
+            outline: none;
+
+            font-family: inherit;
+            font-size: 18px;
+            text-align: center;
+            letter-spacing: 8px;
+        }
+
+        input:focus {
+            border-color: #7c3aed;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(124, 58, 237, 0.08);
+        }
+
+        button {
+            width: 100%;
+            border: 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #5b21b6
+                );
+
+            color: white;
+            padding: 13px;
+            border-radius: 10px;
+
+            font-family: inherit;
+            font-size: 10px;
+            font-weight: 600;
+
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .timer {
+            text-align: center;
+            margin-top: 15px;
+            color: #64748b;
+            font-size: 9px;
+        }
+
+        .resend {
+            display: block;
+            border: 0;
+            background: none;
+
+            color: #7c3aed;
+
+            padding: 0;
+            margin: 10px auto 0;
+
+            width: auto;
+
+            font-size: 9px;
+        }
+
+        .resend:hover {
+            background: none;
+            transform: none;
+            text-decoration: underline;
+        }
+
+        .message {
+            margin-top: 18px;
+            padding: 12px;
+            border-radius: 9px;
+
+            text-align: center;
+            font-size: 9px;
+            line-height: 1.5;
+
+            display: none;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .message.success {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .message.error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+
+            margin-top: 20px;
+
+            color: #7c3aed;
+            text-decoration: none;
+
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 450px) {
+
+            .card {
+                padding: 30px 22px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="logo">
+        Startup<span>Connect</span>
+    </div>
+
+    <div class="icon">
+        <i class="fa-solid fa-shield-halved"></i>
+    </div>
+
+    <h1>
+        Verify Your Code
+    </h1>
+
+    <p class="subtitle">
+        Enter the 6-digit verification code
+        sent to your email address.
+    </p>
+
+    <div class="email-box">
+
+        Code sent to:
+
+        <strong id="emailDisplay">
+            your email
+        </strong>
+
+    </div>
+
+    <form id="verifyForm">
+
+        <label for="code">
+            VERIFICATION CODE
+        </label>
+
+        <input
+            type="text"
+            id="code"
+            maxlength="6"
+            inputmode="numeric"
+            autocomplete="one-time-code"
+            placeholder="000000"
+            required
+        >
+
+        <button
+            type="submit"
+            id="verifyButton">
+
+            <i class="fa-solid fa-check"></i>
+
+            &nbsp;
+
+            Verify Code
+
+        </button>
+
+    </form>
+
+    <div
+        class="timer"
+        id="timer">
+        Code expires in 05:00
+    </div>
+
+    <button
+        type="button"
+        class="resend"
+        id="resendButton">
+
+        Resend Code
+
+    </button>
+
+    <div
+        id="message"
+        class="message">
+    </div>
+
+    <a
+        href="forgot-password.html"
+        class="back">
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        Change Email
+
+    </a>
+
+</div>
+
+
+<script>
+
+const verifyForm =
+    document.getElementById("verifyForm");
+
+const codeInput =
+    document.getElementById("code");
+
+const verifyButton =
+    document.getElementById("verifyButton");
+
+const resendButton =
+    document.getElementById("resendButton");
+
+const message =
+    document.getElementById("message");
+
+const emailDisplay =
+    document.getElementById("emailDisplay");
+
+const timer =
+    document.getElementById("timer");
+
+
+/* =========================================
+   GET EMAIL
+========================================= */
+
+const resetEmail =
+    localStorage.getItem("resetEmail");
+
+
+if (!resetEmail) {
+
+    window.location.href =
+        "forgot-password.html";
+
+} else {
+
+    emailDisplay.textContent =
+        resetEmail;
+
+}
+
+
+/* =========================================
+   VERIFY CODE
+========================================= */
+
+verifyForm.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+        const code =
+            codeInput.value.trim();
+
+
+        if (!/^\d{6}$/.test(code)) {
+
+            showMessage(
+                "Please enter the 6-digit verification code.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (timeLeft <= 0) {
+
+            showMessage(
+                "This verification code has expired. Please request a new code.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        verifyButton.disabled = true;
+
+        verifyButton.innerHTML =
+            '<i class="fa-solid fa-spinner fa-spin"></i> Verifying...';
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/api/auth/verify-code",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            email:
+                                resetEmail,
+
+                            code:
+                                code
+
+                        })
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            console.log(
+                "VERIFY CODE RESPONSE:",
+                data
+            );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.message ||
+                    "Invalid verification code."
+                );
+
+            }
+
+
+            /*
+             * Store verification state.
+             * The reset-password page will use
+             * these values.
+             */
+
+            localStorage.setItem(
+                "codeVerified",
+                "true"
+            );
+
+            localStorage.setItem(
+                "verifiedResetEmail",
+                resetEmail
+            );
+
+            localStorage.setItem(
+                "verificationCode",
+                code
+            );
+
+
+            showMessage(
+                "Code verified successfully.",
+                "success"
+            );
+
+
+            clearInterval(timerInterval);
+
+
+            setTimeout(
+                function() {
+
+                    window.location.href =
+                        "reset-password.html";
+
+                },
+                700
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "❌ VERIFY CODE ERROR:",
+                error
+            );
+
+
+            showMessage(
+                error.message ||
+                "Unable to verify code.",
+                "error"
+            );
+
+
+            verifyButton.disabled =
+                false;
+
+            verifyButton.innerHTML =
+                '<i class="fa-solid fa-check"></i> &nbsp; Verify Code';
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   RESEND CODE
+========================================= */
+
+resendButton.addEventListener(
+    "click",
+    async function() {
+
+        if (!resetEmail) {
+            return;
+        }
+
+
+        resendButton.disabled =
+            true;
+
+        resendButton.textContent =
+            "Sending...";
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/api/auth/forgot-password",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            email:
+                                resetEmail
+
+                        })
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.message ||
+                    "Unable to resend code."
+                );
+
+            }
+
+
+            /*
+             * Previous verification is no
+             * longer valid.
+             */
+
+            localStorage.removeItem(
+                "codeVerified"
+            );
+
+            localStorage.removeItem(
+                "verifiedResetEmail"
+            );
+
+            localStorage.removeItem(
+                "verificationCode"
+            );
+
+
+            codeInput.value = "";
+
+
+            showMessage(
+                "A new verification code has been sent.",
+                "success"
+            );
+
+
+            startTimer();
+
+
+        } catch (error) {
+
+            console.error(
+                "❌ RESEND CODE ERROR:",
+                error
+            );
+
+
+            showMessage(
+                error.message ||
+                "Unable to resend code.",
+                "error"
+            );
+
+        }
+
+
+        resendButton.disabled =
+            false;
+
+        resendButton.textContent =
+            "Resend Code";
+
+    }
+);
+
+
+/* =========================================
+   TIMER
+========================================= */
+
+let timeLeft = 300;
+
+let timerInterval;
+
+
+function startTimer() {
+
+    clearInterval(timerInterval);
+
+    timeLeft = 300;
+
+
+    updateTimer();
+
+
+    timerInterval =
+        setInterval(
+            function() {
+
+                timeLeft--;
+
+                updateTimer();
+
+
+                if (timeLeft <= 0) {
+
+                    clearInterval(
+                        timerInterval
+                    );
+
+                }
+
+            },
+            1000
+        );
+
+}
+
+
+function updateTimer() {
+
+    const minutes =
+        Math.floor(
+            timeLeft / 60
+        );
+
+    const seconds =
+        timeLeft % 60;
+
+
+    if (timeLeft <= 0) {
+
+        timer.textContent =
+            "Code expired. Please request a new code.";
+
+        return;
+
+    }
+
+
+    timer.textContent =
+        "Code expires in " +
+        String(minutes).padStart(2, "0") +
+        ":" +
+        String(seconds).padStart(2, "0");
+
+}
+
+
+startTimer();
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+function showMessage(
+    text,
+    type
+) {
+
+    message.textContent =
+        text;
+
+    message.className =
+        "message show " + type;
+
+}
+
+</script>
+
+</body>
+
+</html>

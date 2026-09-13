@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Funding Tracker</title>
+
+    <link rel="stylesheet" href="funding.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>💰 Startup Funding Tracker</h1>
+
+        <div class="card">
+
+            <h2>Funding Progress</h2>
+
+            <div class="progress">
+
+                <div id="progressBar"></div>
+
+            </div>
+
+            <h3 id="progressText">$0 Raised of $100000 Goal</h3>
+
+            <input type="number" id="amount" placeholder="Enter Investment Amount">
+
+            <button onclick="addFunding()">
+
+                Add Investment
+
+            </button>
+
+        </div>
+
+        <div class="history">
+
+            <h2>Investment History</h2>
+
+            <ul id="historyList">
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <script src="funding.js"></script>
+
+</body>
+
+</html>

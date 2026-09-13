@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="sidebar">
+
+        <h2>🚀 StartupConnect</h2>
+
+        <ul>
+
+            <li class="active">Dashboard</li>
+
+            <li>Founders</li>
+
+            <li>Ideas</li>
+
+            <li>Meetings</li>
+
+            <li>Funding</li>
+
+            <li onclick="logout()">Logout</li>
+
+        </ul>
+
+    </div>
+
+    <div class="main">
+
+        <h1>Administrator Dashboard</h1>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h2>Founder</h2>
+
+                <p id="founderName"></p>
+
+            </div>
+
+            <div class="card">
+
+                <h2>Startup</h2>
+
+                <p id="startupName"></p>
+
+            </div>
+
+            <div class="card">
+
+                <h2>Email</h2>
+
+                <p id="email"></p>
+
+            </div>
+
+            <div class="card">
+
+                <h2>Funding Raised</h2>
+
+                <p id="funding">$0</p>
+
+            </div>
+
+        </div>
+
+        <div class="tableBox">
+
+            <h2>Startup Idea</h2>
+
+            <table>
+
+                <tr>
+
+                    <td>Title</td>
+
+                    <td id="ideaTitle"></td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Domain</td>
+
+                    <td id="ideaDomain"></td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Description</td>
+
+                    <td id="ideaDescription"></td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Problem</td>
+
+                    <td id="ideaProblem"></td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Solution</td>
+
+                    <td id="ideaSolution"></td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+        <div class="tableBox">
+
+            <h2>Meeting Request</h2>
+
+            <table>
+
+                <tr>
+
+                    <td>Investor</td>
+
+                    <td id="investor"></td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Date</td>
+
+                    <td id="meetingDate"></td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Time</td>
+
+                    <td id="meetingTime"></td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Status</td>
+
+                    <td id="meetingStatus"></td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <script src="admin.js"></script>
+
+</body>
+
+</html>

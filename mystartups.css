@@ -1,0 +1,817 @@
+/* =========================================================
+   STARTUPCONNECT — MY STARTUP
+   PREMIUM CSS
+========================================================= */
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #f5f7fb;
+    color: #172033;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 260px;
+    height: 100vh;
+    background: #ffffff;
+    border-right: 1px solid #e8ecf3;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    transition: 0.3s ease;
+}
+
+
+/* BRAND */
+
+.brand {
+    height: 90px;
+    padding: 20px 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid #eef1f6;
+}
+
+.brand-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 13px;
+    background: linear-gradient(135deg, #0f62fe, #6366f1);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
+}
+
+.brand h2 {
+    font-size: 16px;
+    font-weight: 800;
+    color: #172033;
+}
+
+.brand span {
+    display: block;
+    margin-top: 2px;
+    color: #8b95a7;
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.navigation {
+    flex: 1;
+    padding: 22px 14px;
+    overflow-y: auto;
+}
+
+.nav-heading {
+    padding: 0 12px;
+    margin: 15px 0 9px;
+    color: #9aa4b5;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+}
+
+.nav-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-height: 46px;
+    padding: 0 13px;
+    margin-bottom: 4px;
+    border-radius: 11px;
+    color: #687386;
+    font-size: 13px;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+
+.nav-link i {
+    width: 20px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.nav-link:hover {
+    background: #f3f6ff;
+    color: #2563eb;
+}
+
+.nav-link.active {
+    background: linear-gradient(135deg, #eff5ff, #eef2ff);
+    color: #2563eb;
+    font-weight: 600;
+}
+
+.nav-link.active::before {
+    content: "";
+    position: absolute;
+    left: -14px;
+    width: 3px;
+    height: 25px;
+    border-radius: 0 5px 5px 0;
+    background: #2563eb;
+}
+
+
+/* =========================================================
+   SIDEBAR BOTTOM
+========================================================= */
+
+.sidebar-bottom {
+    padding: 16px;
+    border-top: 1px solid #eef1f6;
+}
+
+.logout-btn {
+    width: 100%;
+    height: 45px;
+    border: none;
+    background: #fff2f2;
+    color: #ef4444;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.logout-btn:hover {
+    background: #fee2e2;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.main-content {
+    margin-left: 260px;
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.topbar {
+    height: 90px;
+    padding: 0 35px;
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid #e9edf3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 500;
+    backdrop-filter: blur(15px);
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.page-label {
+    color: #9aa4b5;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+}
+
+.topbar h1 {
+    margin-top: 3px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #172033;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+}
+
+
+/* MENU BUTTON */
+
+.menu-btn {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #e5e9f0;
+    background: white;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+
+/* NOTIFICATION */
+
+.notification-btn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #edf0f5;
+    border-radius: 10px;
+    background: white;
+    color: #647084;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.notification-btn span {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 6px;
+    height: 6px;
+    background: #ef4444;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+
+
+/* USER */
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.user-details strong {
+    display: block;
+    color: #172033;
+    font-size: 12px;
+}
+
+.user-details small {
+    display: block;
+    color: #9aa4b5;
+    font-size: 9px;
+    margin-top: 2px;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.content {
+    padding: 35px;
+}
+
+
+/* =========================================================
+   PAGE INTRO
+========================================================= */
+
+.page-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 28px;
+}
+
+.intro-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 11px;
+    border-radius: 30px;
+    background: #eef4ff;
+    color: #2563eb;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.page-intro h2 {
+    margin-top: 10px;
+    font-size: 28px;
+    color: #172033;
+}
+
+.page-intro p {
+    margin-top: 5px;
+    color: #8a94a6;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   PROFILE COMPLETION
+========================================================= */
+
+.completion-box {
+    width: 260px;
+    padding: 18px;
+    background: white;
+    border: 1px solid #edf0f5;
+    border-radius: 14px;
+    box-shadow: 0 5px 20px rgba(15, 23, 42, 0.03);
+}
+
+.completion-box span {
+    display: block;
+    color: #667085;
+    font-size: 10px;
+    margin-bottom: 10px;
+}
+
+.progress {
+    height: 8px;
+    background: #edf1f7;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #2563eb, #7c3aed);
+    border-radius: 20px;
+    transition: width 0.4s ease;
+}
+
+.completion-box strong {
+    display: block;
+    margin-top: 7px;
+    text-align: right;
+    color: #2563eb;
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.startup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-section {
+    background: white;
+    border: 1px solid #edf0f5;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(15, 23, 42, 0.025);
+}
+
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 23px;
+}
+
+.section-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.section-icon.blue {
+    color: #2563eb;
+    background: #edf4ff;
+}
+
+.section-icon.purple {
+    color: #7c3aed;
+    background: #f3edff;
+}
+
+.section-icon.orange {
+    color: #f59e0b;
+    background: #fff7e7;
+}
+
+.section-icon.green {
+    color: #10b981;
+    background: #eafaf5;
+}
+
+.section-title h3 {
+    font-size: 15px;
+    color: #172033;
+}
+
+.section-title p {
+    margin-top: 3px;
+    color: #9aa4b5;
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   FORM GRID
+========================================================= */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.form-group label {
+    margin-bottom: 8px;
+    color: #344054;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.form-group label span {
+    color: #ef4444;
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.input-box {
+    position: relative;
+}
+
+.input-box > i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9aa4b5;
+    font-size: 12px;
+    pointer-events: none;
+}
+
+.input-box input,
+.input-box select {
+    width: 100%;
+    height: 46px;
+    border: 1px solid #e1e6ef;
+    background: #fbfcfe;
+    border-radius: 10px;
+    padding: 0 14px 0 40px;
+    outline: none;
+    color: #344054;
+    font-size: 10px;
+    transition: 0.2s;
+}
+
+.input-box select {
+    cursor: pointer;
+}
+
+.input-box input::placeholder {
+    color: #a8b0bd;
+}
+
+.input-box input:focus,
+.input-box select:focus,
+textarea:focus {
+    background: white;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+
+/* =========================================================
+   TEXTAREA
+========================================================= */
+
+textarea {
+    width: 100%;
+    border: 1px solid #e1e6ef;
+    background: #fbfcfe;
+    border-radius: 10px;
+    padding: 14px;
+    outline: none;
+    resize: vertical;
+    color: #344054;
+    font-size: 10px;
+    line-height: 1.7;
+    transition: 0.2s;
+}
+
+textarea::placeholder {
+    color: #a8b0bd;
+}
+
+
+/* =========================================================
+   CHARACTER COUNT
+========================================================= */
+
+.character-count {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 7px;
+    color: #a0a8b6;
+    font-size: 8px;
+}
+
+.character-count strong {
+    color: #667085;
+}
+
+
+/* =========================================================
+   TWO COLUMN
+========================================================= */
+
+.two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+
+/* =========================================================
+   FORM ACTIONS
+========================================================= */
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 5px 0 25px;
+}
+
+.cancel-btn,
+.save-btn {
+    min-width: 135px;
+    height: 45px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.cancel-btn {
+    border: 1px solid #e1e6ef;
+    background: white;
+    color: #667085;
+}
+
+.cancel-btn:hover {
+    background: #f8fafc;
+}
+
+.save-btn {
+    border: none;
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+    color: white;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.18);
+}
+
+.save-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(37, 99, 235, 0.25);
+}
+
+
+/* =========================================================
+   SUCCESS MESSAGE
+========================================================= */
+
+.success-message {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 18px;
+    background: #ffffff;
+    border: 1px solid #d8f3e8;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.12);
+    color: #059669;
+    font-size: 11px;
+    font-weight: 600;
+    animation: slideUp 0.3s ease;
+}
+
+.success-message i {
+    font-size: 16px;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .sidebar {
+        width: 225px;
+    }
+
+    .main-content {
+        margin-left: 225px;
+    }
+
+    .content {
+        padding: 25px;
+    }
+
+    .page-intro {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .completion-box {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .sidebar {
+        transform: translateX(-100%);
+        width: 260px;
+        box-shadow: 10px 0 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .topbar {
+        height: 75px;
+        padding: 0 20px;
+    }
+
+    .user-details {
+        display: none;
+    }
+
+    .content {
+        padding: 22px 18px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width {
+        grid-column: auto;
+    }
+
+    .two-column {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE — SMALL MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .content {
+        padding: 18px 13px;
+    }
+
+    .page-intro h2 {
+        font-size: 23px;
+    }
+
+    .form-section {
+        padding: 18px;
+    }
+
+    .section-title {
+        margin-bottom: 18px;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .cancel-btn,
+    .save-btn {
+        width: 100%;
+    }
+
+    .topbar h1 {
+        font-size: 19px;
+    }
+}

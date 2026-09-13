@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StartupConnect AI Mentor</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 260px;
+            height: 100vh;
+            background: linear-gradient(180deg, #171329 0%, #211a40 100%);
+            color: white;
+            padding: 28px 18px;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 12px;
+            margin-bottom: 35px;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .nav-title {
+            color: #9892ad;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin: 20px 12px 10px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 12px 14px;
+            margin: 5px 0;
+            color: #bdb8ca;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .nav-item:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .nav-item.active {
+            color: white;
+            background: linear-gradient(
+                135deg,
+                rgba(139, 92, 246, 0.9),
+                rgba(99, 102, 241, 0.9)
+            );
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.25);
+        }
+
+        .main {
+            margin-left: 260px;
+            min-height: 100vh;
+        }
+
+        .header {
+            height: 76px;
+            background: white;
+            border-bottom: 1px solid #e8eaf0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+        }
+
+        .header-left h1 {
+            font-size: 21px;
+            font-weight: 600;
+            color: #171329;
+        }
+
+        .header-left p {
+            font-size: 12px;
+            color: #8a8797;
+            margin-top: 2px;
+        }
+
+        .ai-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #ecfdf3;
+            color: #159957;
+            padding: 8px 13px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+        }
+
+        .content {
+            padding: 28px 32px;
+            height: calc(100vh - 76px);
+        }
+
+        .ai-container {
+            max-width: 1100px;
+            height: 100%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .startup-bar {
+            background: white;
+            border: 1px solid #e8eaf0;
+            border-radius: 14px;
+            padding: 15px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+            box-shadow: 0 3px 12px rgba(30, 20, 70, 0.04);
+        }
+
+        .startup-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .startup-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .startup-label {
+            font-size: 11px;
+            color: #92909c;
+        }
+
+        .startup-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #242132;
+            margin-top: 1px;
+        }
+
+        .chat-card {
+            flex: 1;
+            min-height: 0;
+            background: white;
+            border: 1px solid #e8eaf0;
+            border-radius: 18px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(30, 20, 70, 0.05);
+        }
+
+        .chat-header {
+            padding: 18px 22px;
+            border-bottom: 1px solid #ececf1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .ai-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .chat-header-text h2 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #262133;
+        }
+
+        .chat-header-text p {
+            font-size: 11px;
+            color: #9794a2;
+            margin-top: 2px;
+        }
+
+        .chat {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+            background: #fafbfe;
+        }
+
+        .message {
+            display: flex;
+            gap: 11px;
+            margin-bottom: 20px;
+            max-width: 82%;
+        }
+
+        .message.user {
+            margin-left: auto;
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 34px;
+            height: 34px;
+            min-width: 34px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+        }
+
+        .message.ai .message-avatar {
+            background: #ede9fe;
+            color: #7c3aed;
+        }
+
+        .message.user .message-avatar {
+            background: #e0e7ff;
+            color: #4f46e5;
+        }
+
+        .message-content {
+            padding: 12px 15px;
+            border-radius: 14px;
+            font-size: 13px;
+            line-height: 1.65;
+            word-wrap: break-word;
+        }
+
+        .message.ai .message-content {
+            background: white;
+            border: 1px solid #e7e7ed;
+            color: #4a4655;
+            border-top-left-radius: 4px;
+        }
+
+        .message.user .message-content {
+            background: linear-gradient(135deg, #7c3aed, #6366f1);
+            color: white;
+            border-top-right-radius: 4px;
+        }
+
+        .message-content strong {
+            font-weight: 600;
+        }
+
+        .message-content ul {
+            padding-left: 18px;
+            margin-top: 8px;
+        }
+
+        .message-content li {
+            margin-bottom: 4px;
+        }
+
+        .typing {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 13px 15px;
+            background: white;
+            border: 1px solid #e7e7ed;
+            border-radius: 14px;
+            border-top-left-radius: 4px;
+        }
+
+        .typing span {
+            width: 6px;
+            height: 6px;
+            background: #a78bfa;
+            border-radius: 50%;
+            animation: typing 1.2s infinite;
+        }
+
+        .typing span:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+
+        .typing span:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.4;
+            }
+
+            30% {
+                transform: translateY(-5px);
+                opacity: 1;
+            }
+        }
+
+        .suggestions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding: 12px 20px;
+            border-top: 1px solid #ececf1;
+            background: white;
+        }
+
+        .suggestion {
+            border: 1px solid #ddd9ea;
+            background: white;
+            color: #615b70;
+            border-radius: 20px;
+            padding: 7px 12px;
+            font-family: inherit;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .suggestion:hover {
+            border-color: #8b5cf6;
+            color: #7c3aed;
+            background: #faf7ff;
+        }
+
+        .input-area {
+            padding: 15px 20px 18px;
+            background: white;
+            border-top: 1px solid #ececf1;
+        }
+
+        .input-box {
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+            border: 1px solid #dddde5;
+            border-radius: 13px;
+            padding: 8px 9px 8px 14px;
+            background: #fafbfc;
+            transition: border 0.2s;
+        }
+
+        .input-box:focus-within {
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.08);
+        }
+
+        textarea {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            resize: none;
+            font-family: inherit;
+            font-size: 13px;
+            color: #292634;
+            min-height: 25px;
+            max-height: 100px;
+            line-height: 1.5;
+        }
+
+        textarea::placeholder {
+            color: #aaa7b2;
+        }
+
+        .send-btn {
+            width: 38px;
+            height: 38px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .send-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .input-note {
+            text-align: center;
+            color: #aaa7b2;
+            font-size: 9px;
+            margin-top: 8px;
+        }
+
+        .error-box {
+            display: none;
+            background: #fff1f2;
+            color: #be123c;
+            border: 1px solid #fecdd3;
+            border-radius: 10px;
+            padding: 11px 14px;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        .error-box.show {
+            display: block;
+        }
+
+        .no-startup {
+            padding: 25px;
+            text-align: center;
+            color: #777381;
+            font-size: 13px;
+        }
+
+        .no-startup i {
+            display: block;
+            font-size: 30px;
+            color: #a78bfa;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 900px) {
+            .sidebar {
+                width: 220px;
+            }
+
+            .main {
+                margin-left: 220px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .header {
+                padding: 0 18px;
+            }
+
+            .content {
+                height: auto;
+                min-height: calc(100vh - 76px);
+                padding: 15px;
+            }
+
+            .chat-card {
+                min-height: 650px;
+            }
+
+            .message {
+                max-width: 92%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fa-solid fa-rocket"></i>
+            </div>
+
+            <div class="logo-text">
+                StartupConnect
+            </div>
+        </div>
+
+        <div class="nav-title">
+            Main
+        </div>
+
+        <a href="founder-dashboard.html" class="nav-item">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Dashboard</span>
+        </a>
+
+        <a href="mystartups.html" class="nav-item">
+            <i class="fa-solid fa-rocket"></i>
+            <span>My Startups</span>
+        </a>
+
+        <a href="evaluation.html" class="nav-item">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>AI Evaluation</span>
+        </a>
+
+        <a href="ai.html" class="nav-item active">
+            <i class="fa-solid fa-robot"></i>
+            <span>AI Mentor</span>
+        </a>
+
+        <div class="nav-title">
+            Account
+        </div>
+
+        <a href="profile.html" class="nav-item">
+            <i class="fa-solid fa-user"></i>
+            <span>Profile</span>
+        </a>
+
+        <a href="settings.html" class="nav-item">
+            <i class="fa-solid fa-gear"></i>
+            <span>Settings</span>
+        </a>
+
+        <a href="login.html" class="nav-item" id="logoutLink">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <!-- HEADER -->
+        <header class="header">
+
+            <div class="header-left">
+                <h1>StartupConnect AI</h1>
+                <p>Your intelligent startup mentor</p>
+            </div>
+
+            <div class="ai-status">
+                <span class="status-dot"></span>
+                AI Online
+            </div>
+
+        </header>
+
+
+        <!-- CONTENT -->
+        <section class="content">
+
+            <div class="ai-container">
+
+                <!-- SELECTED STARTUP -->
+                <div class="startup-bar" id="startupBar">
+
+                    <div class="startup-info">
+
+                        <div class="startup-icon">
+                            <i class="fa-solid fa-rocket"></i>
+                        </div>
+
+                        <div>
+                            <div class="startup-label">
+                                Currently discussing
+                            </div>
+
+                            <div class="startup-name" id="startupName">
+                                Loading startup...
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ERROR -->
+                <div class="error-box" id="errorBox"></div>
+
+
+                <!-- CHAT CARD -->
+                <div class="chat-card">
+
+                    <div class="chat-header">
+
+                        <div class="ai-avatar">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+
+                        <div class="chat-header-text">
+                            <h2>StartupConnect AI Mentor</h2>
+                            <p>Ask me anything about your startup</p>
+                        </div>
+
+                    </div>
+
+
+                    <!-- CHAT -->
+                    <div class="chat" id="chat">
+
+                        <div class="message ai">
+
+                            <div class="message-avatar">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+
+                            <div class="message-content">
+                                Hello! 👋 I'm your StartupConnect AI Mentor.
+                                <br><br>
+                                I can help you with your startup idea, market
+                                strategy, business model, competition,
+                                growth strategy, funding and more.
+                                <br><br>
+                                What would you like to discuss?
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SUGGESTIONS -->
+                    <div class="suggestions">
+
+                        <button
+                            class="suggestion"
+                            data-message="Analyze my startup idea and tell me its biggest strengths and weaknesses."
+                        >
+                            Analyze my idea
+                        </button>
+
+                        <button
+                            class="suggestion"
+                            data-message="Who are my likely competitors and how can I differentiate my startup?"
+                        >
+                            Competitors
+                        </button>
+
+                        <button
+                            class="suggestion"
+                            data-message="How can I improve my business model?"
+                        >
+                            Improve business model
+                        </button>
+
+                        <button
+                            class="suggestion"
+                            data-message="What should my startup focus on in the next 3 months?"
+                        >
+                            3-month strategy
+                        </button>
+
+                    </div>
+
+
+                    <!-- INPUT -->
+                    <div class="input-area">
+
+                        <div class="input-box">
+
+                            <textarea
+                                id="messageInput"
+                                placeholder="Ask your AI mentor..."
+                                rows="1"
+                            ></textarea>
+
+                            <button
+                                class="send-btn"
+                                id="sendBtn"
+                                type="button"
+                                title="Send message"
+                            >
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+
+                        </div>
+
+                        <div class="input-note">
+                            AI-generated advice may not always be accurate.
+                            Validate important business decisions independently.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- CONFIG FIRST -->
+    <script src="config.js"></script>
+
+
+    <!-- AI SCRIPT -->
+    <script>
+
+        let startup = null;
+
+
+        /* =========================================
+           SESSION CHECK
+        ========================================= */
+
+        function checkSession() {
+
+            const token =
+                localStorage.getItem("startupconnect_token");
+
+            if (!token) {
+
+                window.location.href = "login.html";
+
+                return false;
+            }
+
+            return true;
+        }
+
+
+        /* =========================================
+           CLEAR LOGIN DATA
+        ========================================= */
+
+        function clearLoginData() {
+
+            localStorage.removeItem("startupconnect_token");
+            localStorage.removeItem("startupconnect_user");
+
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+
+            localStorage.removeItem("loggedIn");
+            localStorage.removeItem("isLoggedIn");
+
+            localStorage.removeItem("currentUser");
+            localStorage.removeItem("selectedStartup");
+        }
+
+
+        /* =========================================
+           UNAUTHORIZED HANDLER
+        ========================================= */
+
+        function handleUnauthorized(message) {
+
+            console.error("Authentication error:", message);
+
+            clearLoginData();
+
+            window.location.href = "login.html";
+        }
+
+
+        /* =========================================
+           SHOW ERROR
+        ========================================= */
+
+        function showError(message) {
+
+            const errorBox =
+                document.getElementById("errorBox");
+
+            if (!errorBox) {
+                return;
+            }
+
+            errorBox.textContent = message;
+            errorBox.classList.add("show");
+
+            setTimeout(() => {
+
+                errorBox.classList.remove("show");
+
+            }, 6000);
+        }
+
+
+        /* =========================================
+           LOAD SELECTED STARTUP
+        ========================================= */
+
+        function loadStartup() {
+
+            const startupData =
+                localStorage.getItem("selectedStartup");
+
+            const startupName =
+                document.getElementById("startupName");
+
+            const messageInput =
+                document.getElementById("messageInput");
+
+            const sendBtn =
+                document.getElementById("sendBtn");
+
+            if (!startupData) {
+
+                startupName.textContent =
+                    "No startup selected";
+
+                messageInput.disabled = true;
+                sendBtn.disabled = true;
+
+                const chat =
+                    document.getElementById("chat");
+
+                chat.innerHTML = `
+                    <div class="no-startup">
+                        <i class="fa-solid fa-rocket"></i>
+
+                        <strong>No startup selected</strong>
+
+                        <br><br>
+
+                        Please go to
+                        <b>My Startups</b>
+                        and select a startup before using AI Mentor.
+                    </div>
+                `;
+
+                return;
+            }
+
+
+            try {
+
+                startup = JSON.parse(startupData);
+
+                startupName.textContent =
+                    startup.name ||
+                    startup.startupName ||
+                    "Selected Startup";
+
+            } catch (error) {
+
+                console.error(
+                    "Failed to parse selected startup:",
+                    error
+                );
+
+                localStorage.removeItem("selectedStartup");
+
+                startup = null;
+
+                startupName.textContent =
+                    "Invalid startup";
+
+                messageInput.disabled = true;
+                sendBtn.disabled = true;
+
+                showError(
+                    "Unable to load the selected startup."
+                );
+            }
+        }
+
+
+        /* =========================================
+           ADD MESSAGE
+        ========================================= */
+
+        function addMessage(text, type) {
+
+            const chat =
+                document.getElementById("chat");
+
+            const message =
+                document.createElement("div");
+
+            message.className =
+                `message ${type}`;
+
+            const avatar =
+                document.createElement("div");
+
+            avatar.className =
+                "message-avatar";
+
+            avatar.innerHTML =
+                type === "ai"
+                    ? '<i class="fa-solid fa-robot"></i>'
+                    : '<i class="fa-solid fa-user"></i>';
+
+
+            const content =
+                document.createElement("div");
+
+            content.className =
+                "message-content";
+
+
+            if (type === "ai") {
+
+                content.innerHTML =
+                    formatAIResponse(text);
+
+            } else {
+
+                content.textContent =
+                    text;
+            }
+
+
+            message.appendChild(avatar);
+            message.appendChild(content);
+
+            chat.appendChild(message);
+
+            chat.scrollTop =
+                chat.scrollHeight;
+        }
+
+
+        /* =========================================
+           FORMAT AI RESPONSE
+        ========================================= */
+
+        function formatAIResponse(text) {
+
+            if (!text) {
+                return "";
+            }
+
+            const temp =
+                document.createElement("div");
+
+            temp.textContent = text;
+
+            let safeText =
+                temp.innerHTML;
+
+
+            safeText =
+                safeText.replace(
+                    /\*\*(.*?)\*\*/g,
+                    "<strong>$1</strong>"
+                );
+
+
+            safeText =
+                safeText.replace(
+                    /\n/g,
+                    "<br>"
+                );
+
+
+            return safeText;
+        }
+
+
+        /* =========================================
+           TYPING INDICATOR
+        ========================================= */
+
+        function showTyping() {
+
+            const chat =
+                document.getElementById("chat");
+
+            const message =
+                document.createElement("div");
+
+            message.className =
+                "message ai";
+
+            message.id =
+                "typingMessage";
+
+            message.innerHTML = `
+                <div class="message-avatar">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+
+                <div class="typing">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            `;
+
+            chat.appendChild(message);
+
+            chat.scrollTop =
+                chat.scrollHeight;
+        }
+
+
+        /* =========================================
+           REMOVE TYPING INDICATOR
+        ========================================= */
+
+        function removeTyping() {
+
+            const typing =
+                document.getElementById(
+                    "typingMessage"
+                );
+
+            if (typing) {
+                typing.remove();
+            }
+        }
+
+
+        /* =========================================
+           SEND MESSAGE
+        ========================================= */
+
+        async function sendMessage() {
+
+            if (!checkSession()) {
+                return;
+            }
+
+
+            const input =
+                document.getElementById(
+                    "messageInput"
+                );
+
+            const sendBtn =
+                document.getElementById(
+                    "sendBtn"
+                );
+
+
+            const message =
+                input.value.trim();
+
+
+            if (!message) {
+                return;
+            }
+
+
+            if (!startup) {
+
+                showError(
+                    "Please select a startup first."
+                );
+
+                return;
+            }
+
+
+            /* USER MESSAGE */
+
+            addMessage(
+                message,
+                "user"
+            );
+
+
+            input.value = "";
+
+            input.style.height =
+                "auto";
+
+            sendBtn.disabled = true;
+
+
+            /* TYPING */
+
+            showTyping();
+
+
+            try {
+
+                const token =
+                    localStorage.getItem(
+                        "startupconnect_token"
+                    );
+
+
+                if (!token) {
+
+                    handleUnauthorized(
+                        "Authentication token missing"
+                    );
+
+                    return;
+                }
+
+
+                const response =
+                    await fetch(
+                        `${API_URL}/api/ai`,
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json",
+
+                                "Authorization":
+                                    `Bearer ${token}`
+                            },
+
+                            body: JSON.stringify({
+
+                                message: message,
+
+                                startup: startup
+
+                            })
+                        }
+                    );
+
+
+                const rawText =
+                    await response.text();
+
+
+                console.log(
+                    "AI RAW RESPONSE:",
+                    rawText
+                );
+
+
+                let data = null;
+
+
+                try {
+
+                    data =
+                        rawText
+                            ? JSON.parse(rawText)
+                            : null;
+
+                } catch (parseError) {
+
+                    console.error(
+                        "AI JSON PARSE ERROR:",
+                        parseError
+                    );
+
+                    throw new Error(
+                        "Server returned an invalid response."
+                    );
+                }
+
+
+                /* 401 */
+
+                if (response.status === 401) {
+
+                    const backendMessage =
+                        data &&
+                        data.message
+                            ? data.message
+                            : "Session expired. Please login again.";
+
+                    handleUnauthorized(
+                        backendMessage
+                    );
+
+                    return;
+                }
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data &&
+                        data.message
+                            ? data.message
+                            : `AI request failed (${response.status})`
+                    );
+                }
+
+
+                if (!data) {
+
+                    throw new Error(
+                        "Empty response received from server."
+                    );
+                }
+
+
+                if (!data.success) {
+
+                    throw new Error(
+                        data.message ||
+                        "AI request failed."
+                    );
+                }
+
+
+                if (!data.reply) {
+
+                    throw new Error(
+                        "AI returned an empty response."
+                    );
+                }
+
+
+                console.log(
+                    "AI RESPONSE:",
+                    data.reply
+                );
+
+
+                /* AI MESSAGE */
+
+                addMessage(
+                    data.reply,
+                    "ai"
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "AI ERROR:",
+                    error
+                );
+
+
+                showError(
+                    error.message ||
+                    "Unable to connect to StartupConnect AI."
+                );
+
+
+                addMessage(
+                    "Sorry, I couldn't process that request right now. Please try again.",
+                    "ai"
+                );
+
+
+            } finally {
+
+                removeTyping();
+
+                sendBtn.disabled = false;
+
+                input.focus();
+            }
+        }
+
+
+        /* =========================================
+           SUGGESTIONS
+        ========================================= */
+
+        function setupSuggestions() {
+
+            const suggestions =
+                document.querySelectorAll(
+                    ".suggestion"
+                );
+
+
+            suggestions.forEach(button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        const message =
+                            button.dataset.message;
+
+                        const input =
+                            document.getElementById(
+                                "messageInput"
+                            );
+
+                        input.value =
+                            message;
+
+                        input.focus();
+
+                        input.style.height =
+                            "auto";
+
+                        input.style.height =
+                            Math.min(
+                                input.scrollHeight,
+                                100
+                            ) + "px";
+                    }
+                );
+
+            });
+        }
+
+
+        /* =========================================
+           TEXTAREA ENTER HANDLING
+        ========================================= */
+
+        function setupTextarea() {
+
+            const input =
+                document.getElementById(
+                    "messageInput"
+                );
+
+
+            input.addEventListener(
+                "keydown",
+                event => {
+
+                    if (
+                        event.key === "Enter" &&
+                        !event.shiftKey
+                    ) {
+
+                        event.preventDefault();
+
+                        sendMessage();
+                    }
+
+                }
+            );
+
+
+            input.addEventListener(
+                "input",
+                () => {
+
+                    input.style.height =
+                        "auto";
+
+                    input.style.height =
+                        Math.min(
+                            input.scrollHeight,
+                            100
+                        ) + "px";
+                }
+            );
+        }
+
+
+        /* =========================================
+           SEND BUTTON
+        ========================================= */
+
+        function setupSendButton() {
+
+            const sendBtn =
+                document.getElementById(
+                    "sendBtn"
+                );
+
+            sendBtn.addEventListener(
+                "click",
+                sendMessage
+            );
+        }
+
+
+        /* =========================================
+           LOGOUT
+        ========================================= */
+
+        function setupLogout() {
+
+            const logoutLink =
+                document.getElementById(
+                    "logoutLink"
+                );
+
+
+            logoutLink.addEventListener(
+                "click",
+                event => {
+
+                    event.preventDefault();
+
+                    clearLoginData();
+
+                    window.location.href =
+                        "login.html";
+                }
+            );
+        }
+
+
+        /* =========================================
+           PAGE LOAD
+        ========================================= */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            () => {
+
+                if (!checkSession()) {
+                    return;
+                }
+
+                loadStartup();
+
+                setupSuggestions();
+
+                setupTextarea();
+
+                setupSendButton();
+
+                setupLogout();
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
