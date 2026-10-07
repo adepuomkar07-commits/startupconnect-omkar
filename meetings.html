@@ -10,10 +10,15 @@
 
     <link rel="stylesheet" href="meetings.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    >
 
 </head>
 
@@ -29,31 +34,125 @@
 
                 <label>Investor</label>
 
-                <input type="text" id="investor" readonly>
+                <input
+                    type="text"
+                    id="investor"
+                    readonly
+                >
+
 
                 <label>Select Date</label>
 
-                <input type="date" id="meetingDate" required>
+                <input
+                    type="date"
+                    id="meetingDate"
+                    required
+                >
+
 
                 <label>Select Time</label>
 
-                <input type="time" id="meetingTime" required>
+                <input
+                    type="time"
+                    id="meetingTime"
+                    required
+                >
+
 
                 <label>Meeting Mode</label>
 
                 <select id="meetingMode">
 
-                    <option>Online</option>
+                    <option value="Online">
+                        Online
+                    </option>
 
-                    <option>Offline</option>
+                    <option value="Offline">
+                        Offline
+                    </option>
 
                 </select>
 
+
                 <label>Purpose</label>
 
-                <textarea id="purpose" rows="5" placeholder="Purpose of the meeting" required></textarea>
+                <textarea
+                    id="purpose"
+                    rows="5"
+                    placeholder="Purpose of the meeting"
+                    required
+                ></textarea>
 
-                <button type="submit">
+
+                <!-- ========================================= -->
+                <!-- GOOGLE GMAIL CONNECTION -->
+                <!-- ========================================= -->
+
+                <div
+                    id="googleSection"
+                    style="
+                        margin-top: 20px;
+                        padding: 18px;
+                        background: #f8f9ff;
+                        border: 1px solid #e0e3ff;
+                        border-radius: 12px;
+                    "
+                >
+
+                    <h3
+                        style="
+                            margin-top: 0;
+                            margin-bottom: 8px;
+                        "
+                    >
+                        🔐 Gmail Connection
+                    </h3>
+
+                    <p
+                        id="googleStatus"
+                        style="
+                            margin-top: 0;
+                            color: #666;
+                            font-size: 14px;
+                        "
+                    >
+                        Checking Gmail connection...
+                    </p>
+
+
+                    <button
+                        type="button"
+                        id="connectGoogleBtn"
+                        style="
+                            display: none;
+                            background: #4285F4;
+                            color: white;
+                            border: none;
+                            padding: 12px 18px;
+                            border-radius: 8px;
+                            cursor: pointer;
+                            font-size: 14px;
+                            font-weight: 600;
+                        "
+                    >
+
+                        <i class="fa-brands fa-google"></i>
+
+                        Connect Gmail
+
+                    </button>
+
+                </div>
+
+
+                <!-- ========================================= -->
+                <!-- BOOK MEETING -->
+                <!-- ========================================= -->
+
+                <button
+                    type="submit"
+                    id="bookMeetingBtn"
+                >
 
                     📅 Book Meeting
 
@@ -61,11 +160,13 @@
 
             </form>
 
+
             <div id="successBox"></div>
 
         </div>
 
     </div>
+
 
     <script src="meetings.js"></script>
 

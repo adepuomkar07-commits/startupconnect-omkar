@@ -2,1432 +2,2057 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Settings | StartupConnect</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: "Poppins", sans-serif;
-            background: #f5f6fa;
-            color: #1f2937;
-        }
-
-        /* ================= SIDEBAR ================= */
-
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 250px;
-            height: 100vh;
-            background: linear-gradient(180deg, #17132f, #241c4d);
-            color: white;
-            padding: 25px 18px;
-            z-index: 1000;
-        }
-
-        .logo {
-            font-size: 23px;
-            font-weight: 700;
-            margin-bottom: 35px;
-            padding-left: 10px;
-        }
-
-        .logo span {
-            color: #a78bfa;
-        }
-
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 13px 15px;
-            margin-bottom: 7px;
-            color: #c8c3df;
-            text-decoration: none;
-            border-radius: 10px;
-            font-size: 14px;
-            transition: 0.3s;
-        }
-
-        .nav-item i {
-            width: 20px;
-            text-align: center;
-        }
-
-        .nav-item:hover,
-        .nav-item.active {
-            background: rgba(139, 92, 246, 0.2);
-            color: white;
-        }
-
-        .nav-item.active {
-            border-left: 3px solid #8b5cf6;
-        }
-
-        .logout-nav {
-            margin-top: 25px;
-            cursor: pointer;
-        }
-
-        /* ================= MAIN ================= */
-
-        .main {
-            margin-left: 250px;
-            min-height: 100vh;
-            padding: 30px;
-        }
-
-        .topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .page-title h1 {
-            font-size: 27px;
-            font-weight: 700;
-            color: #17132f;
-        }
-
-        .page-title p {
-            color: #7b8191;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-
-        .profile-mini {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .avatar {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: 600;
-        }
-
-        .profile-mini span {
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        /* ================= SETTINGS ================= */
-
-        .settings-container {
-            max-width: 1050px;
-        }
-
-        .tabs {
-            display: flex;
-            gap: 8px;
-            background: white;
-            padding: 8px;
-            border-radius: 14px;
-            margin-bottom: 22px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-            overflow-x: auto;
-        }
-
-        .tab {
-            border: none;
-            background: transparent;
-            padding: 11px 18px;
-            border-radius: 9px;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 13px;
-            font-weight: 500;
-            color: #73788a;
-            white-space: nowrap;
-            transition: 0.3s;
-        }
-
-        .tab:hover {
-            background: #f3f0ff;
-            color: #6d28d9;
-        }
-
-        .tab.active {
-            background: #7c3aed;
-            color: white;
-        }
-
-        .settings-section {
-            display: none;
-            background: white;
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
-        }
-
-        .settings-section.active {
-            display: block;
-        }
-
-        .section-header {
-            margin-bottom: 25px;
-        }
-
-        .section-header h2 {
-            font-size: 19px;
-            color: #211b3b;
-            margin-bottom: 5px;
-        }
-
-        .section-header p {
-            color: #85899a;
-            font-size: 13px;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 18px;
-        }
-
-        .form-group.full {
-            grid-column: 1 / -1;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            color: #44495a;
-            margin-bottom: 8px;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1px solid #e0e2ea;
-            border-radius: 9px;
-            outline: none;
-            font-family: inherit;
-            font-size: 13px;
-            color: #333;
-            transition: 0.3s;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            border-color: #8b5cf6;
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
-        }
-
-        .btn {
-            border: none;
-            padding: 11px 20px;
-            border-radius: 9px;
-            font-family: inherit;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 7px 20px rgba(109, 40, 217, 0.25);
-        }
-
-        .btn-danger {
-            background: #fee2e2;
-            color: #dc2626;
-        }
-
-        .btn-danger:hover {
-            background: #fecaca;
-        }
-
-        .save-area {
-            margin-top: 10px;
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        /* ================= TOGGLE ================= */
-
-        .setting-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 0;
-            border-bottom: 1px solid #eeeef2;
-        }
-
-        .setting-row:last-child {
-            border-bottom: none;
-        }
-
-        .setting-info h3 {
-            font-size: 14px;
-            color: #343747;
-            margin-bottom: 4px;
-        }
-
-        .setting-info p {
-            font-size: 12px;
-            color: #8a8e9d;
-        }
-
-        .switch {
-            position: relative;
-            width: 45px;
-            height: 24px;
-        }
-
-        .switch input {
-            display: none;
-        }
-
-        .slider {
-            position: absolute;
-            inset: 0;
-            background: #d6d8df;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .slider:before {
-            content: "";
-            position: absolute;
-            width: 18px;
-            height: 18px;
-            left: 3px;
-            top: 3px;
-            background: white;
-            border-radius: 50%;
-            transition: 0.3s;
-        }
-
-        .switch input:checked + .slider {
-            background: #7c3aed;
-        }
-
-        .switch input:checked + .slider:before {
-            transform: translateX(21px);
-        }
-
-        /* ================= APPEARANCE ================= */
-
-        .theme-options {
-            display: flex;
-            gap: 18px;
-            margin-top: 20px;
-        }
-
-        .theme-card {
-            flex: 1;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 20px;
-            cursor: pointer;
-            text-align: center;
-            transition: 0.3s;
-        }
-
-        .theme-card:hover {
-            border-color: #a78bfa;
-        }
-
-        .theme-card.selected {
-            border-color: #7c3aed;
-            background: #faf8ff;
-        }
-
-        .theme-preview {
-            height: 80px;
-            border-radius: 8px;
-            margin-bottom: 12px;
-        }
-
-        .light-preview {
-            background: #f5f6fa;
-            border: 1px solid #ddd;
-        }
-
-        .dark-preview {
-            background: #18152f;
-        }
-
-        .theme-card span {
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        /* ================= DANGER ================= */
-
-        .danger-box {
-            border: 1px solid #fecaca;
-            background: #fff7f7;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .danger-box h3 {
-            color: #b91c1c;
-            font-size: 15px;
-            margin-bottom: 6px;
-        }
-
-        .danger-box p {
-            color: #7f1d1d;
-            font-size: 12px;
-            margin-bottom: 15px;
-        }
-
-        /* ================= TOAST ================= */
-
-        .toast {
-            position: fixed;
-            right: 25px;
-            bottom: 25px;
-            background: #17132f;
-            color: white;
-            padding: 13px 20px;
-            border-radius: 9px;
-            font-size: 13px;
-            opacity: 0;
-            transform: translateY(20px);
-            pointer-events: none;
-            transition: 0.3s;
-            z-index: 5000;
-        }
-
-        .toast.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ================= MOBILE ================= */
-
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            z-index: 2000;
-            border: none;
-            background: #7c3aed;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        @media (max-width: 900px) {
-
-            .sidebar {
-                transform: translateX(-100%);
-                transition: 0.3s;
-            }
-
-            .sidebar.open {
-                transform: translateX(0);
-            }
-
-            .main {
-                margin-left: 0;
-                padding: 25px 18px;
-            }
-
-            .mobile-menu {
-                display: block;
-            }
-
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .form-group.full {
-                grid-column: auto;
-            }
-
-            .theme-options {
-                flex-direction: column;
-            }
-        }
-
-        @media (max-width: 600px) {
-
-            .page-title h1 {
-                font-size: 22px;
-            }
-
-            .profile-mini span {
-                display: none;
-            }
-
-            .settings-section {
-                padding: 20px;
-            }
-        }
-    </style>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Settings | StartupConnect</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Poppins, sans-serif;
+    background: #f5f7fb;
+    color: #172033;
+}
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 100vh;
+
+    background: linear-gradient(
+        180deg,
+        #111827,
+        #17112d
+    );
+
+    padding: 25px 15px;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: 800;
+    padding: 0 15px 35px;
+}
+
+.logo span {
+    color: #8b5cf6;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #aeb7c8;
+
+    padding: 13px 15px;
+
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    font-size: 13px;
+
+    transition: 0.2s;
+}
+
+.nav a:hover,
+.nav a.active {
+    background: #7c3aed;
+    color: white;
+}
+
+.nav i {
+    width: 20px;
+    text-align: center;
+}
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main {
+    margin-left: 250px;
+    padding: 30px;
+
+    max-width: 1250px;
+}
+
+.header {
+    margin-bottom: 25px;
+}
+
+.header h1 {
+    font-size: 27px;
+    font-weight: 800;
+}
+
+.header p {
+    color: #64748b;
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+/* =====================================================
+   SETTINGS LAYOUT
+===================================================== */
+
+.settings-layout {
+    display: grid;
+
+    grid-template-columns: 230px 1fr;
+
+    gap: 20px;
+}
+
+/* =====================================================
+   TABS
+===================================================== */
+
+.tabs {
+    background: white;
+
+    border: 1px solid #edf0f5;
+
+    border-radius: 16px;
+
+    padding: 12px;
+
+    height: max-content;
+
+    box-shadow:
+        0 7px 25px rgba(30, 41, 59, 0.05);
+}
+
+.tab {
+    width: 100%;
+
+    border: 0;
+
+    background: transparent;
+
+    text-align: left;
+
+    padding: 12px;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+    color: #64748b;
+
+    font-size: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 4px;
+}
+
+.tab:hover {
+    background: #f5f3ff;
+    color: #7c3aed;
+}
+
+.tab.active {
+    background: #ede9fe;
+    color: #7c3aed;
+    font-weight: 600;
+}
+
+.tab i {
+    width: 18px;
+}
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card {
+    background: white;
+
+    border: 1px solid #edf0f5;
+
+    border-radius: 18px;
+
+    padding: 24px;
+
+    box-shadow:
+        0 7px 25px rgba(30, 41, 59, 0.05);
+}
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+.section-header {
+    padding-bottom: 18px;
+
+    margin-bottom: 20px;
+
+    border-bottom: 1px solid #edf0f5;
+}
+
+.section-header h2 {
+    font-size: 16px;
+}
+
+.section-header p {
+    color: #64748b;
+
+    font-size: 9px;
+
+    margin-top: 5px;
+}
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+
+    color: #475569;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    margin-bottom: 7px;
+}
+
+input,
+select {
+    width: 100%;
+
+    padding: 11px 12px;
+
+    border: 1px solid #dbe1ea;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    font-family: inherit;
+
+    font-size: 10px;
+}
+
+input:focus,
+select:focus {
+    border-color: #8b5cf6;
+
+    box-shadow:
+        0 0 0 3px rgba(124, 58, 237, 0.08);
+}
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 18px;
+}
+
+/* =====================================================
+   TOGGLE
+===================================================== */
+
+.setting-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 17px 0;
+
+    border-bottom: 1px solid #edf0f5;
+}
+
+.setting-info h3 {
+    font-size: 11px;
+
+    margin-bottom: 4px;
+}
+
+.setting-info p {
+    color: #64748b;
+
+    font-size: 8px;
+
+    line-height: 1.5;
+}
+
+.toggle {
+    position: relative;
+
+    width: 42px;
+
+    height: 23px;
+
+    flex-shrink: 0;
+}
+
+.toggle input {
+    opacity: 0;
+
+    width: 0;
+
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+
+    inset: 0;
+
+    background: #cbd5e1;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+.slider:before {
+    content: "";
+
+    position: absolute;
+
+    width: 17px;
+
+    height: 17px;
+
+    left: 3px;
+
+    top: 3px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    transition: 0.25s;
+}
+
+.toggle input:checked + .slider {
+    background: #7c3aed;
+}
+
+.toggle input:checked + .slider:before {
+    transform: translateX(19px);
+}
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 9px;
+
+    margin-top: 22px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #edf0f5;
+}
+
+.btn {
+    border: 0;
+
+    padding: 10px 17px;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #7c3aed;
+
+    color: white;
+}
+
+.btn-secondary {
+    background: #f1f5f9;
+
+    color: #475569;
+}
+
+/* =====================================================
+   DANGER
+===================================================== */
+
+.danger {
+    border: 1px solid #fecaca;
+
+    background: #fff7f7;
+
+    border-radius: 12px;
+
+    padding: 18px;
+
+    margin-top: 20px;
+}
+
+.danger h3 {
+    color: #dc2626;
+
+    font-size: 11px;
+
+    margin-bottom: 5px;
+}
+
+.danger p {
+    color: #64748b;
+
+    font-size: 8px;
+
+    margin-bottom: 13px;
+}
+
+.btn-danger {
+    background: #dc2626;
+
+    color: white;
+}
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+.message {
+    position: fixed;
+
+    right: 25px;
+
+    bottom: 25px;
+
+    background: #172033;
+
+    color: white;
+
+    padding: 12px 17px;
+
+    border-radius: 10px;
+
+    font-size: 9px;
+
+    opacity: 0;
+
+    transform: translateY(15px);
+
+    pointer-events: none;
+
+    transition: 0.3s;
+}
+
+.message.show {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 800px) {
+
+    .sidebar {
+        width: 70px;
+
+        padding: 20px 8px;
+    }
+
+    .logo {
+        font-size: 0;
+
+        text-align: center;
+    }
+
+    .logo::after {
+        content: "S";
+
+        font-size: 24px;
+
+        color: #8b5cf6;
+    }
+
+    .nav a {
+        justify-content: center;
+    }
+
+    .nav a span {
+        display: none;
+    }
+
+    .main {
+        margin-left: 70px;
+
+        padding: 20px;
+    }
+
+    .settings-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 550px) {
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .main {
+        padding: 15px;
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+}
+
+/* =====================================================
+   SUPPORT / HELP FIX
+===================================================== */
+
+/*
+   This prevents the information icon from overlapping
+   the "Need help?" text.
+*/
+
+.support-area {
+    margin-top: auto;
+
+    padding: 15px 5px 5px;
+}
+
+.support-label {
+    color: #8b95a7;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
+
+    margin-bottom: 10px;
+
+    padding-left: 10px;
+}
+
+.support-box {
+    position: relative;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    border-radius: 14px;
+
+    padding: 16px;
+
+    min-height: 120px;
+}
+
+.support-box-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 10px;
+}
+
+.support-icon {
+    width: 25px;
+
+    height: 25px;
+
+    min-width: 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #c4b5fd;
+
+    font-size: 18px;
+}
+
+.support-box strong {
+    display: block;
+
+    color: white;
+
+    font-size: 12px;
+
+    line-height: 1.3;
+
+    white-space: nowrap;
+}
+
+.support-box p {
+    color: #aeb7c8;
+
+    font-size: 9px;
+
+    line-height: 1.6;
+
+    margin: 0;
+
+    padding-left: 35px;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+
+    padding-top: 15px;
+}
+
+.logout-btn {
+    width: 100%;
+
+    margin-top: 14px;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    padding: 13px;
+
+    background: rgba(124, 58, 237, 0.15);
+
+    color: #ffb4b4;
+
+    font-family: Poppins, sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    transition: 0.2s;
+}
+
+.logout-btn:hover {
+    background: rgba(220, 38, 38, 0.18);
+
+    color: #ff8f8f;
+}
+
+</style>
+
 </head>
+
 
 <body>
 
-    <!-- MOBILE MENU -->
 
-    <button class="mobile-menu" onclick="toggleSidebar()">
-        <i class="fa-solid fa-bars"></i>
-    </button>
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
 
-    <!-- SIDEBAR -->
+<aside class="sidebar">
 
-    <aside class="sidebar" id="sidebar">
+    <div class="logo">
+        Startup<span>Connect</span>
+    </div>
 
-        <div class="logo">
-            Startup<span>Connect</span>
-        </div>
 
-        <a href="founder-dashboard.html" class="nav-item">
-            <i class="fa-solid fa-chart-line"></i>
+    <nav class="nav">
+
+        <a href="dashboard.html">
+
+            <i class="fa-solid fa-house"></i>
+
             <span>Dashboard</span>
+
         </a>
 
-        <a href="mystartups.html" class="nav-item">
+
+        <a href="founder-dashboard.html">
+
+            <i class="fa-solid fa-chart-pie"></i>
+
+            <span>Founder Dashboard</span>
+
+        </a>
+
+
+        <a href="mystartups.html">
+
             <i class="fa-solid fa-rocket"></i>
+
             <span>My Startups</span>
+
         </a>
 
-        <a href="evaluation.html" class="nav-item">
+
+        <a href="ai.html">
+
             <i class="fa-solid fa-robot"></i>
+
+            <span>AI Assistant</span>
+
+        </a>
+
+
+        <a href="evaluation.html">
+
+            <i class="fa-solid fa-chart-line"></i>
+
             <span>AI Evaluation</span>
+
         </a>
 
-        <a href="ai.html" class="nav-item">
-            <i class="fa-solid fa-comments"></i>
-            <span>AI Mentor</span>
-        </a>
 
-        <a href="profile.html" class="nav-item">
+        <a href="profile.html">
+
             <i class="fa-solid fa-user"></i>
-            <span>Profile</span>
+
+            <span>Founder Profile</span>
+
         </a>
 
-        <a href="settings.html" class="nav-item active">
+
+        <a
+            href="settings.html"
+            class="active"
+        >
+
             <i class="fa-solid fa-gear"></i>
+
             <span>Settings</span>
+
         </a>
 
-        <a href="#" class="nav-item logout-nav" onclick="logout(); return false;">
+    </nav>
+
+
+    <!-- =================================================
+         SUPPORT
+    ================================================= -->
+
+    <div class="sidebar-bottom">
+
+        <div class="support-area">
+
+            <div class="support-label">
+                Support
+            </div>
+
+
+            <div class="support-box">
+
+                <div class="support-box-header">
+
+                    <div class="support-icon">
+
+                        <i class="fa-solid fa-circle-info"></i>
+
+                    </div>
+
+                    <strong>
+                        Need help?
+                    </strong>
+
+                </div>
+
+
+                <p>
+                    Explore StartupConnect tools and get AI-powered guidance for your startup.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="logout-btn"
+            onclick="logout()"
+        >
+
             <i class="fa-solid fa-right-from-bracket"></i>
-            <span>Logout</span>
-        </a>
 
-    </aside>
+            Logout
 
-    <!-- MAIN -->
+        </button>
 
-    <main class="main">
+    </div>
 
-        <div class="topbar">
+</aside>
 
-            <div class="page-title">
-                <h1>Settings ⚙️</h1>
-                <p>Manage your StartupConnect account and preferences.</p>
-            </div>
 
-            <div class="profile-mini">
-                <div class="avatar" id="avatar">U</div>
-                <span id="profileName">User</span>
-            </div>
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+
+<header class="header">
+
+    <h1>
+        Settings
+    </h1>
+
+    <p>
+        Customize your StartupConnect experience.
+    </p>
+
+</header>
+
+
+<div class="settings-layout">
+
+
+<!-- =====================================================
+     TABS
+===================================================== -->
+
+<div class="tabs">
+
+
+<button
+    class="tab active"
+    data-tab="account"
+>
+
+    <i class="fa-solid fa-user"></i>
+
+    Account
+
+</button>
+
+
+<button
+    class="tab"
+    data-tab="notifications"
+>
+
+    <i class="fa-solid fa-bell"></i>
+
+    Notifications
+
+</button>
+
+
+<button
+    class="tab"
+    data-tab="appearance"
+>
+
+    <i class="fa-solid fa-palette"></i>
+
+    Appearance
+
+</button>
+
+
+<button
+    class="tab"
+    data-tab="privacy"
+>
+
+    <i class="fa-solid fa-shield-halved"></i>
+
+    Privacy
+
+</button>
+
+
+<button
+    class="tab"
+    data-tab="danger"
+>
+
+    <i class="fa-solid fa-triangle-exclamation"></i>
+
+    Danger Zone
+
+</button>
+
+
+</div>
+
+
+<!-- =====================================================
+     CONTENT
+===================================================== -->
+
+<div class="card">
+
+
+<!-- =====================================================
+     ACCOUNT
+===================================================== -->
+
+<section
+    class="section active"
+    id="account"
+>
+
+    <div class="section-header">
+
+        <h2>
+            Account Settings
+        </h2>
+
+        <p>
+            Manage your basic account information.
+        </p>
+
+    </div>
+
+
+    <div class="form-grid">
+
+
+        <div class="form-group">
+
+            <label>
+                FOUNDER NAME
+            </label>
+
+            <input
+                type="text"
+                id="accountName"
+                placeholder="Founder name"
+            >
 
         </div>
 
-        <div class="settings-container">
 
-            <!-- TABS -->
+        <div class="form-group">
 
-            <div class="tabs">
+            <label>
+                EMAIL
+            </label>
 
-                <button class="tab active" onclick="showTab('account', this)">
-                    <i class="fa-solid fa-user"></i>
-                    Account
-                </button>
-
-                <button class="tab" onclick="showTab('notifications', this)">
-                    <i class="fa-solid fa-bell"></i>
-                    Notifications
-                </button>
-
-                <button class="tab" onclick="showTab('appearance', this)">
-                    <i class="fa-solid fa-palette"></i>
-                    Appearance
-                </button>
-
-                <button class="tab" onclick="showTab('privacy', this)">
-                    <i class="fa-solid fa-shield-halved"></i>
-                    Privacy
-                </button>
-
-                <button class="tab" onclick="showTab('danger', this)">
-                    <i class="fa-solid fa-triangle-exclamation"></i>
-                    Danger Zone
-                </button>
-
-            </div>
-
-            <!-- ACCOUNT -->
-
-            <section class="settings-section active" id="account">
-
-                <div class="section-header">
-                    <h2>Account Settings</h2>
-                    <p>Update your personal information.</p>
-                </div>
-
-                <div class="form-grid">
-
-                    <div class="form-group">
-                        <label>Full Name</label>
-                        <input type="text" id="accountName" placeholder="Enter your name">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Email Address</label>
-                        <input type="email" id="accountEmail" placeholder="Enter your email">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Phone Number</label>
-                        <input type="text" id="accountPhone" placeholder="Enter phone number">
-                    </div>
-
-                    <div class="form-group">
-                        <label>LinkedIn</label>
-                        <input type="text" id="accountLinkedin" placeholder="LinkedIn profile">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Website</label>
-                        <input type="text" id="accountWebsite" placeholder="Your website">
-                    </div>
-
-                    <div class="form-group full">
-                        <label>Bio</label>
-                        <textarea id="accountBio"
-                            placeholder="Tell us a little about yourself"></textarea>
-                    </div>
-
-                </div>
-
-                <div class="save-area">
-                    <button class="btn btn-primary" onclick="saveAccount()">
-                        <i class="fa-solid fa-floppy-disk"></i>
-                        Save Changes
-                    </button>
-                </div>
-
-            </section>
-
-            <!-- NOTIFICATIONS -->
-
-            <section class="settings-section" id="notifications">
-
-                <div class="section-header">
-                    <h2>Notifications</h2>
-                    <p>Choose which notifications you want to receive.</p>
-                </div>
-
-                <div class="setting-row">
-
-                    <div class="setting-info">
-                        <h3>Email Notifications</h3>
-                        <p>Receive important account updates by email.</p>
-                    </div>
-
-                    <label class="switch">
-                        <input type="checkbox" id="emailNotifications" checked
-                            onchange="saveNotificationSettings()">
-                        <span class="slider"></span>
-                    </label>
-
-                </div>
-
-                <div class="setting-row">
-
-                    <div class="setting-info">
-                        <h3>AI Evaluation Updates</h3>
-                        <p>Get notified when your startup evaluation is ready.</p>
-                    </div>
-
-                    <label class="switch">
-                        <input type="checkbox" id="evaluationNotifications" checked
-                            onchange="saveNotificationSettings()">
-                        <span class="slider"></span>
-                    </label>
-
-                </div>
-
-                <div class="setting-row">
-
-                    <div class="setting-info">
-                        <h3>Startup Recommendations</h3>
-                        <p>Receive useful startup suggestions and insights.</p>
-                    </div>
-
-                    <label class="switch">
-                        <input type="checkbox" id="recommendationNotifications"
-                            onchange="saveNotificationSettings()">
-                        <span class="slider"></span>
-                    </label>
-
-                </div>
-
-            </section>
-
-            <!-- APPEARANCE -->
-
-            <section class="settings-section" id="appearance">
-
-                <div class="section-header">
-                    <h2>Appearance</h2>
-                    <p>Customize how StartupConnect looks.</p>
-                </div>
-
-                <div class="theme-options">
-
-                    <div class="theme-card selected" id="lightTheme"
-                        onclick="selectTheme('light')">
-
-                        <div class="theme-preview light-preview"></div>
-
-                        <span>Light Mode</span>
-
-                    </div>
-
-                    <div class="theme-card" id="darkTheme"
-                        onclick="selectTheme('dark')">
-
-                        <div class="theme-preview dark-preview"></div>
-
-                        <span>Dark Mode</span>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-            <!-- PRIVACY -->
-
-            <section class="settings-section" id="privacy">
-
-                <div class="section-header">
-                    <h2>Privacy & Security</h2>
-                    <p>Manage your privacy and account security preferences.</p>
-                </div>
-
-                <div class="setting-row">
-
-                    <div class="setting-info">
-                        <h3>Profile Visibility</h3>
-                        <p>Allow other StartupConnect users to view your profile.</p>
-                    </div>
-
-                    <label class="switch">
-                        <input type="checkbox" id="profileVisibility" checked
-                            onchange="savePrivacySettings()">
-                        <span class="slider"></span>
-                    </label>
-
-                </div>
-
-                <div class="setting-row">
-
-                    <div class="setting-info">
-                        <h3>Startup Visibility</h3>
-                        <p>Allow your startup information to be discoverable.</p>
-                    </div>
-
-                    <label class="switch">
-                        <input type="checkbox" id="startupVisibility" checked
-                            onchange="savePrivacySettings()">
-                        <span class="slider"></span>
-                    </label>
-
-                </div>
-
-            </section>
-
-            <!-- DANGER ZONE -->
-
-            <section class="settings-section" id="danger">
-
-                <div class="section-header">
-                    <h2>Danger Zone</h2>
-                    <p>Actions here can affect your local application data.</p>
-                </div>
-
-                <div class="danger-box">
-
-                    <h3>Reset Local App Data</h3>
-
-                    <p>
-                        This removes locally stored StartupConnect preferences
-                        and session information from this browser.
-                    </p>
-
-                    <button class="btn btn-danger" onclick="resetData()">
-                        <i class="fa-solid fa-trash"></i>
-                        Reset App Data
-                    </button>
-
-                </div>
-
-                <div class="danger-box">
-
-                    <h3>Logout</h3>
-
-                    <p>
-                        Sign out from your StartupConnect account on this device.
-                    </p>
-
-                    <button class="btn btn-danger" onclick="logout()">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                        Logout
-                    </button>
-
-                </div>
-
-            </section>
+            <input
+                type="email"
+                id="accountEmail"
+                placeholder="Email address"
+            >
 
         </div>
 
-    </main>
 
-    <!-- TOAST -->
+        <div class="form-group">
 
-    <div class="toast" id="toast"></div>
+            <label>
+                LANGUAGE
+            </label>
 
-    <script>
+            <select id="language">
 
-        /* =========================================================
-           STARTUPCONNECT SETTINGS
-           AUTHENTICATION + SESSION PROTECTION
-        ========================================================= */
+                <option value="en">
+                    English
+                </option>
 
-        const API_URL = "https://startupconnect-omkar.onrender.com";
+                <option value="te">
+                    Telugu
+                </option>
 
-        const token = localStorage.getItem("startupconnect_token");
+                <option value="hi">
+                    Hindi
+                </option>
 
-        /*
-         * IMPORTANT:
-         * Settings is a protected page.
-         * If there is no JWT token, immediately return to login.
-         */
+            </select>
 
-        if (!token) {
-            window.location.href = "login.html";
-        }
+        </div>
 
-        /* =========================================================
-           CLEAR SESSION
-        ========================================================= */
 
-        function clearLoginData() {
+        <div class="form-group">
 
-            localStorage.removeItem("startupconnect_token");
-            localStorage.removeItem("startupconnect_user");
+            <label>
+                TIMEZONE
+            </label>
 
-            localStorage.removeItem("token");
-            localStorage.removeItem("user");
+            <select id="timezone">
 
-            localStorage.removeItem("loggedIn");
-            localStorage.removeItem("isLoggedIn");
+                <option value="IST">
+                    India Standard Time (IST)
+                </option>
 
-            localStorage.removeItem("currentUser");
+                <option value="UTC">
+                    UTC
+                </option>
 
-            localStorage.removeItem("selectedStartup");
-        }
+            </select>
 
-        /* =========================================================
-           HANDLE UNAUTHORIZED RESPONSE
-        ========================================================= */
+        </div>
 
-        function handleUnauthorized() {
 
-            clearLoginData();
+    </div>
 
-            window.location.href = "login.html";
-        }
 
-        /* =========================================================
-           PAGE LOAD
-        ========================================================= */
+    <div class="actions">
 
-        document.addEventListener("DOMContentLoaded", async function () {
+        <button
+            class="btn btn-primary"
+            onclick="saveAccount()"
+        >
 
-            const currentToken =
-                localStorage.getItem("startupconnect_token");
+            Save Changes
 
-            if (!currentToken) {
-                window.location.href = "login.html";
-                return;
-            }
+        </button>
 
-            loadSettings();
+    </div>
 
-            loadProfile();
+</section>
 
-        });
 
-        /* =========================================================
-           LOAD PROFILE FROM MONGODB
-        ========================================================= */
+<!-- =====================================================
+     NOTIFICATIONS
+===================================================== -->
 
-        async function loadProfile() {
+<section
+    class="section"
+    id="notifications"
+>
 
-            const currentToken =
-                localStorage.getItem("startupconnect_token");
+    <div class="section-header">
 
-            if (!currentToken) {
-                handleUnauthorized();
-                return;
-            }
+        <h2>
+            Notifications
+        </h2>
 
-            try {
+        <p>
+            Choose which notifications you want to receive.
+        </p>
 
-                const response = await fetch(
-                    `${API_URL}/api/profile`,
-                    {
-                        method: "GET",
-                        headers: {
-                            "Authorization": `Bearer ${currentToken}`
-                        }
-                    }
+    </div>
+
+
+    <div class="setting-row">
+
+        <div class="setting-info">
+
+            <h3>
+                AI Evaluation Results
+            </h3>
+
+            <p>
+                Notify me when my startup evaluation is complete.
+            </p>
+
+        </div>
+
+
+        <label class="toggle">
+
+            <input
+                type="checkbox"
+                id="evaluationNotify"
+                checked
+            >
+
+            <span class="slider"></span>
+
+        </label>
+
+    </div>
+
+
+    <div class="setting-row">
+
+        <div class="setting-info">
+
+            <h3>
+                Startup Updates
+            </h3>
+
+            <p>
+                Receive updates about your startups.
+            </p>
+
+        </div>
+
+
+        <label class="toggle">
+
+            <input
+                type="checkbox"
+                id="startupNotify"
+                checked
+            >
+
+            <span class="slider"></span>
+
+        </label>
+
+    </div>
+
+
+    <div class="setting-row">
+
+        <div class="setting-info">
+
+            <h3>
+                AI Recommendations
+            </h3>
+
+            <p>
+                Receive useful AI suggestions for your startup.
+            </p>
+
+        </div>
+
+
+        <label class="toggle">
+
+            <input
+                type="checkbox"
+                id="aiNotify"
+                checked
+            >
+
+            <span class="slider"></span>
+
+        </label>
+
+    </div>
+
+
+    <div class="setting-row">
+
+        <div class="setting-info">
+
+            <h3>
+                Marketing Emails
+            </h3>
+
+            <p>
+                Receive StartupConnect news and updates.
+            </p>
+
+        </div>
+
+
+        <label class="toggle">
+
+            <input
+                type="checkbox"
+                id="marketingNotify"
+            >
+
+            <span class="slider"></span>
+
+        </label>
+
+    </div>
+
+
+    <div class="actions">
+
+        <button
+            class="btn btn-primary"
+            onclick="saveNotifications()"
+        >
+
+            Save Notifications
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     APPEARANCE
+===================================================== -->
+
+<section
+    class="section"
+    id="appearance"
+>
+
+    <div class="section-header">
+
+        <h2>
+            Appearance
+        </h2>
+
+        <p>
+            Customize how StartupConnect looks.
+        </p>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            THEME
+        </label>
+
+        <select id="theme">
+
+            <option value="light">
+                Light
+            </option>
+
+            <option value="dark">
+                Dark
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="setting-row">
+
+        <div class="setting-info">
+
+            <h3>
+                Compact Navigation
+            </h3>
+
+            <p>
+                Use a smaller sidebar on desktop.
+            </p>
+
+        </div>
+
+
+        <label class="toggle">
+
+            <input
+                type="checkbox"
+                id="compactNav"
+            >
+
+            <span class="slider"></span>
+
+        </label>
+
+    </div>
+
+
+    <div class="actions">
+
+        <button
+            class="btn btn-primary"
+            onclick="saveAppearance()"
+        >
+
+            Save Appearance
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PRIVACY
+===================================================== -->
+
+<section
+    class="section"
+    id="privacy"
+>
+
+    <div class="section-header">
+
+        <h2>
+            Privacy & Security
+        </h2>
+
+        <p>
+            Control your account privacy preferences.
+        </p>
+
+    </div>
+
+
+    <div class="setting-row">
+
+        <div class="setting-info">
+
+            <h3>
+                Profile Visibility
+            </h3>
+
+            <p>
+                Allow other StartupConnect users to discover your founder profile.
+            </p>
+
+        </div>
+
+
+        <label class="toggle">
+
+            <input
+                type="checkbox"
+                id="profileVisibility"
+                checked
+            >
+
+            <span class="slider"></span>
+
+        </label>
+
+    </div>
+
+
+    <div class="setting-row">
+
+        <div class="setting-info">
+
+            <h3>
+                Startup Visibility
+            </h3>
+
+            <p>
+                Allow your startup to appear in the StartupConnect community.
+            </p>
+
+        </div>
+
+
+        <label class="toggle">
+
+            <input
+                type="checkbox"
+                id="startupVisibility"
+                checked
+            >
+
+            <span class="slider"></span>
+
+        </label>
+
+    </div>
+
+
+    <div class="setting-row">
+
+        <div class="setting-info">
+
+            <h3>
+                AI Data Usage
+            </h3>
+
+            <p>
+                Allow startup information to be processed by the AI assistant for evaluations.
+            </p>
+
+        </div>
+
+
+        <label class="toggle">
+
+            <input
+                type="checkbox"
+                id="aiData"
+                checked
+            >
+
+            <span class="slider"></span>
+
+        </label>
+
+    </div>
+
+
+    <div class="actions">
+
+        <button
+            class="btn btn-primary"
+            onclick="savePrivacy()"
+        >
+
+            Save Privacy Settings
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     DANGER ZONE
+===================================================== -->
+
+<section
+    class="section"
+    id="danger"
+>
+
+    <div class="section-header">
+
+        <h2>
+            Danger Zone
+        </h2>
+
+        <p>
+            These actions can remove your local StartupConnect data.
+        </p>
+
+    </div>
+
+
+    <div class="danger">
+
+        <h3>
+            Reset Application Data
+        </h3>
+
+        <p>
+            Remove startups, evaluations, profile information and settings stored in this browser.
+        </p>
+
+        <button
+            class="btn btn-danger"
+            onclick="resetData()"
+        >
+
+            Reset All Data
+
+        </button>
+
+    </div>
+
+
+    <div class="danger">
+
+        <h3>
+            Logout
+        </h3>
+
+        <p>
+            Clear the current login session and return to the login page.
+        </p>
+
+        <button
+            class="btn btn-danger"
+            onclick="logout()"
+        >
+
+            Logout
+
+        </button>
+
+    </div>
+
+</section>
+
+
+</div>
+
+</div>
+
+</main>
+
+
+<div
+    class="message"
+    id="message"
+>
+
+    Saved successfully!
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   TABS
+===================================================== */
+
+const tabs =
+    document.querySelectorAll(".tab");
+
+const sections =
+    document.querySelectorAll(".section");
+
+
+tabs.forEach(tab => {
+
+    tab.addEventListener(
+        "click",
+        () => {
+
+            tabs.forEach(item => {
+
+                item.classList.remove(
+                    "active"
                 );
-
-                if (response.status === 401) {
-                    handleUnauthorized();
-                    return;
-                }
-
-                const data = await response.json();
-
-                console.log("PROFILE RESPONSE:", data);
-
-                if (!response.ok || !data.success) {
-
-                    console.error(
-                        "Profile loading failed:",
-                        data.message
-                    );
-
-                    return;
-                }
-
-                const profile = data.user || data.profile || {};
-
-                document.getElementById("accountName").value =
-                    profile.name || "";
-
-                document.getElementById("accountEmail").value =
-                    profile.email || "";
-
-                document.getElementById("accountPhone").value =
-                    profile.phone || "";
-
-                document.getElementById("accountLinkedin").value =
-                    profile.linkedin || "";
-
-                document.getElementById("accountWebsite").value =
-                    profile.website || "";
-
-                document.getElementById("accountBio").value =
-                    profile.bio || "";
-
-                const name =
-                    profile.name ||
-                    profile.email ||
-                    "User";
-
-                document.getElementById("profileName").textContent =
-                    name;
-
-                document.getElementById("avatar").textContent =
-                    name.charAt(0).toUpperCase();
-
-                /*
-                 * Keep local user data synchronized.
-                 */
-
-                localStorage.setItem(
-                    "startupconnect_user",
-                    JSON.stringify(profile)
-                );
-
-            } catch (error) {
-
-                console.error(
-                    "PROFILE ERROR:",
-                    error
-                );
-
-            }
-
-        }
-
-        /* =========================================================
-           LOAD LOCAL SETTINGS
-        ========================================================= */
-
-        function loadSettings() {
-
-            const emailNotifications =
-                localStorage.getItem("emailNotifications");
-
-            const evaluationNotifications =
-                localStorage.getItem("evaluationNotifications");
-
-            const recommendationNotifications =
-                localStorage.getItem("recommendationNotifications");
-
-            const profileVisibility =
-                localStorage.getItem("profileVisibility");
-
-            const startupVisibility =
-                localStorage.getItem("startupVisibility");
-
-            if (emailNotifications !== null) {
-
-                document.getElementById(
-                    "emailNotifications"
-                ).checked =
-                    emailNotifications === "true";
-
-            }
-
-            if (evaluationNotifications !== null) {
-
-                document.getElementById(
-                    "evaluationNotifications"
-                ).checked =
-                    evaluationNotifications === "true";
-
-            }
-
-            if (recommendationNotifications !== null) {
-
-                document.getElementById(
-                    "recommendationNotifications"
-                ).checked =
-                    recommendationNotifications === "true";
-
-            }
-
-            if (profileVisibility !== null) {
-
-                document.getElementById(
-                    "profileVisibility"
-                ).checked =
-                    profileVisibility === "true";
-
-            }
-
-            if (startupVisibility !== null) {
-
-                document.getElementById(
-                    "startupVisibility"
-                ).checked =
-                    startupVisibility === "true";
-
-            }
-
-            const theme =
-                localStorage.getItem("startupTheme") || "light";
-
-            selectTheme(theme, false);
-
-        }
-
-        /* =========================================================
-           SAVE ACCOUNT
-        ========================================================= */
-
-        async function saveAccount() {
-
-            const currentToken =
-                localStorage.getItem("startupconnect_token");
-
-            if (!currentToken) {
-                handleUnauthorized();
-                return;
-            }
-
-            const name =
-                document.getElementById("accountName").value.trim();
-
-            const phone =
-                document.getElementById("accountPhone").value.trim();
-
-            const linkedin =
-                document.getElementById("accountLinkedin").value.trim();
-
-            const website =
-                document.getElementById("accountWebsite").value.trim();
-
-            const bio =
-                document.getElementById("accountBio").value.trim();
-
-            if (!name) {
-
-                showToast("Please enter your name.");
-
-                return;
-            }
-
-            try {
-
-                const response = await fetch(
-                    `${API_URL}/api/profile`,
-                    {
-                        method: "PUT",
-
-                        headers: {
-                            "Content-Type": "application/json",
-                            "Authorization": `Bearer ${currentToken}`
-                        },
-
-                        body: JSON.stringify({
-                            name,
-                            phone,
-                            linkedin,
-                            website,
-                            bio
-                        })
-                    }
-                );
-
-                if (response.status === 401) {
-                    handleUnauthorized();
-                    return;
-                }
-
-                const data = await response.json();
-
-                console.log(
-                    "PROFILE UPDATE RESPONSE:",
-                    data
-                );
-
-                if (!response.ok || !data.success) {
-
-                    showToast(
-                        data.message ||
-                        "Unable to save changes."
-                    );
-
-                    return;
-                }
-
-                const updatedUser =
-                    data.user ||
-                    data.profile;
-
-                if (updatedUser) {
-
-                    localStorage.setItem(
-                        "startupconnect_user",
-                        JSON.stringify(updatedUser)
-                    );
-
-                }
-
-                document.getElementById(
-                    "profileName"
-                ).textContent = name;
-
-                document.getElementById(
-                    "avatar"
-                ).textContent =
-                    name.charAt(0).toUpperCase();
-
-                showToast("Profile updated successfully.");
-
-            } catch (error) {
-
-                console.error(
-                    "SAVE PROFILE ERROR:",
-                    error
-                );
-
-                showToast(
-                    "Unable to connect to the server."
-                );
-
-            }
-
-        }
-
-        /* =========================================================
-           TABS
-        ========================================================= */
-
-        function showTab(tabId, button) {
-
-            document.querySelectorAll(
-                ".settings-section"
-            ).forEach(section => {
-
-                section.classList.remove("active");
 
             });
 
-            document.querySelectorAll(
-                ".tab"
-            ).forEach(tab => {
 
-                tab.classList.remove("active");
+            sections.forEach(section => {
+
+                section.classList.remove(
+                    "active"
+                );
 
             });
 
+
+            tab.classList.add(
+                "active"
+            );
+
+
+            const target =
+                document.getElementById(
+                    tab.dataset.tab
+                );
+
+
+            if (target) {
+
+                target.classList.add(
+                    "active"
+                );
+
+            }
+
+        }
+    );
+
+});
+
+
+/* =====================================================
+   LOAD SETTINGS
+===================================================== */
+
+function loadSettings() {
+
+    const profile =
+        JSON.parse(
+            localStorage.getItem(
+                "founderProfile"
+            )
+        ) || {};
+
+
+    document.getElementById(
+        "accountName"
+    ).value =
+        profile.name ||
+        localStorage.getItem(
+            "founderName"
+        ) ||
+        "";
+
+
+    document.getElementById(
+        "accountEmail"
+    ).value =
+        profile.email ||
+        localStorage.getItem(
+            "email"
+        ) ||
+        "";
+
+
+    const notifications =
+        JSON.parse(
+            localStorage.getItem(
+                "startupNotifications"
+            )
+        ) || {};
+
+
+    document.getElementById(
+        "evaluationNotify"
+    ).checked =
+        notifications.evaluation !== false;
+
+
+    document.getElementById(
+        "startupNotify"
+    ).checked =
+        notifications.startup !== false;
+
+
+    document.getElementById(
+        "aiNotify"
+    ).checked =
+        notifications.ai !== false;
+
+
+    document.getElementById(
+        "marketingNotify"
+    ).checked =
+        notifications.marketing === true;
+
+
+    const appearance =
+        JSON.parse(
+            localStorage.getItem(
+                "startupAppearance"
+            )
+        ) || {};
+
+
+    document.getElementById(
+        "theme"
+    ).value =
+        appearance.theme ||
+        "light";
+
+
+    document.getElementById(
+        "compactNav"
+    ).checked =
+        appearance.compact === true;
+
+
+    const privacy =
+        JSON.parse(
+            localStorage.getItem(
+                "startupPrivacy"
+            )
+        ) || {};
+
+
+    document.getElementById(
+        "profileVisibility"
+    ).checked =
+        privacy.profile !== false;
+
+
+    document.getElementById(
+        "startupVisibility"
+    ).checked =
+        privacy.startup !== false;
+
+
+    document.getElementById(
+        "aiData"
+    ).checked =
+        privacy.ai !== false;
+
+}
+
+
+/* =====================================================
+   ACCOUNT
+===================================================== */
+
+function saveAccount() {
+
+    const name =
+        document.getElementById(
+            "accountName"
+        ).value.trim();
+
+
+    const email =
+        document.getElementById(
+            "accountEmail"
+        ).value.trim();
+
+
+    if (!name) {
+
+        showMessage(
+            "Please enter your name."
+        );
+
+        return;
+
+    }
+
+
+    if (!email) {
+
+        showMessage(
+            "Please enter your email."
+        );
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "founderName",
+        name
+    );
+
+
+    localStorage.setItem(
+        "email",
+        email
+    );
+
+
+    let profile =
+        JSON.parse(
+            localStorage.getItem(
+                "founderProfile"
+            )
+        ) || {};
+
+
+    profile.name = name;
+
+    profile.email = email;
+
+
+    localStorage.setItem(
+        "founderProfile",
+        JSON.stringify(profile)
+    );
+
+
+    showMessage(
+        "Account settings saved."
+    );
+
+}
+
+
+/* =====================================================
+   NOTIFICATIONS
+===================================================== */
+
+function saveNotifications() {
+
+    const data = {
+
+        evaluation:
             document.getElementById(
-                tabId
-            ).classList.add("active");
+                "evaluationNotify"
+            ).checked,
 
-            button.classList.add("active");
+        startup:
+            document.getElementById(
+                "startupNotify"
+            ).checked,
 
-        }
+        ai:
+            document.getElementById(
+                "aiNotify"
+            ).checked,
 
-        /* =========================================================
-           NOTIFICATION SETTINGS
-        ========================================================= */
+        marketing:
+            document.getElementById(
+                "marketingNotify"
+            ).checked
 
-        function saveNotificationSettings() {
+    };
 
-            localStorage.setItem(
-                "emailNotifications",
-                document.getElementById(
-                    "emailNotifications"
-                ).checked
+
+    localStorage.setItem(
+        "startupNotifications",
+        JSON.stringify(data)
+    );
+
+
+    showMessage(
+        "Notification settings saved."
+    );
+
+}
+
+
+/* =====================================================
+   APPEARANCE
+===================================================== */
+
+function saveAppearance() {
+
+    const data = {
+
+        theme:
+            document.getElementById(
+                "theme"
+            ).value,
+
+        compact:
+            document.getElementById(
+                "compactNav"
+            ).checked
+
+    };
+
+
+    localStorage.setItem(
+        "startupAppearance",
+        JSON.stringify(data)
+    );
+
+
+    showMessage(
+        "Appearance settings saved."
+    );
+
+}
+
+
+/* =====================================================
+   PRIVACY
+===================================================== */
+
+function savePrivacy() {
+
+    const data = {
+
+        profile:
+            document.getElementById(
+                "profileVisibility"
+            ).checked,
+
+        startup:
+            document.getElementById(
+                "startupVisibility"
+            ).checked,
+
+        ai:
+            document.getElementById(
+                "aiData"
+            ).checked
+
+    };
+
+
+    localStorage.setItem(
+        "startupPrivacy",
+        JSON.stringify(data)
+    );
+
+
+    showMessage(
+        "Privacy settings saved."
+    );
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+function resetData() {
+
+    const confirmReset =
+        confirm(
+            "Are you sure? This will remove your StartupConnect data from this browser."
+        );
+
+
+    if (!confirmReset) {
+        return;
+    }
+
+
+    localStorage.clear();
+
+
+    showMessage(
+        "All application data has been reset."
+    );
+
+
+    setTimeout(
+        () => {
+
+            window.location.href =
+                "login.html";
+
+        },
+        1200
+    );
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logout() {
+
+    const confirmLogout =
+        confirm(
+            "Are you sure you want to logout?"
+        );
+
+
+    if (!confirmLogout) {
+        return;
+    }
+
+
+    /*
+       Keep startup/profile data.
+       Only remove session information.
+    */
+
+    localStorage.removeItem(
+        "loggedIn"
+    );
+
+    localStorage.removeItem(
+        "isLoggedIn"
+    );
+
+    localStorage.removeItem(
+        "currentUser"
+    );
+
+
+    /*
+       Also remove the JWT token used
+       by the current StartupConnect login.
+    */
+
+    localStorage.removeItem(
+        "token"
+    );
+
+    localStorage.removeItem(
+        "startupconnect_token"
+    );
+
+    localStorage.removeItem(
+        "startupconnect_user"
+    );
+
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+function showMessage(text) {
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    message.textContent =
+        text;
+
+
+    message.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        () => {
+
+            message.classList.remove(
+                "show"
             );
 
-            localStorage.setItem(
-                "evaluationNotifications",
-                document.getElementById(
-                    "evaluationNotifications"
-                ).checked
-            );
+        },
+        2500
+    );
 
-            localStorage.setItem(
-                "recommendationNotifications",
-                document.getElementById(
-                    "recommendationNotifications"
-                ).checked
-            );
+}
 
-            showToast(
-                "Notification settings saved."
-            );
 
-        }
+/* =====================================================
+   START
+===================================================== */
 
-        /* =========================================================
-           PRIVACY SETTINGS
-        ========================================================= */
+loadSettings();
 
-        function savePrivacySettings() {
-
-            localStorage.setItem(
-                "profileVisibility",
-                document.getElementById(
-                    "profileVisibility"
-                ).checked
-            );
-
-            localStorage.setItem(
-                "startupVisibility",
-                document.getElementById(
-                    "startupVisibility"
-                ).checked
-            );
-
-            showToast(
-                "Privacy settings saved."
-            );
-
-        }
-
-        /* =========================================================
-           THEME
-        ========================================================= */
-
-        function selectTheme(theme, showMessage = true) {
-
-            const lightTheme =
-                document.getElementById("lightTheme");
-
-            const darkTheme =
-                document.getElementById("darkTheme");
-
-            lightTheme.classList.remove("selected");
-            darkTheme.classList.remove("selected");
-
-            if (theme === "dark") {
-
-                darkTheme.classList.add("selected");
-
-            } else {
-
-                lightTheme.classList.add("selected");
-
-            }
-
-            localStorage.setItem(
-                "startupTheme",
-                theme
-            );
-
-            /*
-             * The actual StartupConnect pages currently use
-             * their own theme styles, so this preference is
-             * stored without changing the existing UI.
-             */
-
-            if (showMessage) {
-
-                showToast(
-                    `${theme === "dark" ? "Dark" : "Light"} mode selected.`
-                );
-
-            }
-
-        }
-
-        /* =========================================================
-           RESET LOCAL APP DATA
-        ========================================================= */
-
-        function resetData() {
-
-            const confirmed =
-                confirm(
-                    "Are you sure you want to reset local StartupConnect data?"
-                );
-
-            if (!confirmed) {
-                return;
-            }
-
-            /*
-             * Full local reset intentionally logs the user out.
-             */
-
-            localStorage.clear();
-
-            window.location.href = "login.html";
-
-        }
-
-        /* =========================================================
-           LOGOUT
-        ========================================================= */
-
-        function logout() {
-
-            const confirmed =
-                confirm(
-                    "Are you sure you want to logout?"
-                );
-
-            if (!confirmed) {
-                return;
-            }
-
-            clearLoginData();
-
-            window.location.href = "login.html";
-
-        }
-
-        /* =========================================================
-           TOAST
-        ========================================================= */
-
-        let toastTimer;
-
-        function showToast(message) {
-
-            const toast =
-                document.getElementById("toast");
-
-            toast.textContent = message;
-
-            toast.classList.add("show");
-
-            clearTimeout(toastTimer);
-
-            toastTimer = setTimeout(() => {
-
-                toast.classList.remove("show");
-
-            }, 2500);
-
-        }
-
-        /* =========================================================
-           MOBILE SIDEBAR
-        ========================================================= */
-
-        function toggleSidebar() {
-
-            document
-                .getElementById("sidebar")
-                .classList.toggle("open");
-
-        }
-
-    </script>
+</script>
 
 </body>
 

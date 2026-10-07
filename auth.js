@@ -1,6 +1,9 @@
 const express = require("express");
+
 const bcrypt = require("bcryptjs");
+
 const jwt = require("jsonwebtoken");
+
 const nodemailer = require("nodemailer");
 
 const User = require("./user");
@@ -13,29 +16,14 @@ const router = express.Router();
 // =====================================================
 
 const transporter = nodemailer.createTransport({
+
     service: "gmail",
 
     auth: {
+
         user: process.env.EMAIL_USER,
+
         pass: process.env.EMAIL_APP_PASSWORD
-    }
-});
-
-
-// =====================================================
-// TEST EMAIL CONNECTION
-// =====================================================
-
-transporter.verify((error, success) => {
-
-    if (error) {
-
-        console.error("❌ Gmail SMTP connection failed:");
-        console.error(error.message);
-
-    } else {
-
-        console.log("✅ Gmail SMTP is ready.");
 
     }
 
@@ -165,10 +153,15 @@ router.post("/register", async (req, res) => {
 
 
         console.log("---------------------------------");
+
         console.log("✅ NEW USER REGISTERED");
+
         console.log("Name:", user.name);
+
         console.log("Email:", user.email);
+
         console.log("User ID:", user._id);
+
         console.log("---------------------------------");
 
 
@@ -180,6 +173,7 @@ router.post("/register", async (req, res) => {
             jwt.sign(
 
                 {
+
                     userId:
                         user._id,
 
@@ -188,13 +182,16 @@ router.post("/register", async (req, res) => {
 
                     role:
                         user.role
+
                 },
 
                 process.env.JWT_SECRET,
 
                 {
+
                     expiresIn:
                         "7d"
+
                 }
 
             );
@@ -312,18 +309,28 @@ router.post("/login", async (req, res) => {
 
         const passwordMatch =
             await bcrypt.compare(
+
                 password,
+
                 user.password
+
             );
 
 
         console.log("🔎 LOGIN DEBUG");
+
         console.log("Email found:", user.email);
-        console.log("Password received:", !!password);
+
+        console.log(
+            "Password received:",
+            !!password
+        );
+
         console.log(
             "Stored password starts with:",
             user.password.substring(0, 10)
         );
+
         console.log(
             "Password match:",
             passwordMatch
@@ -348,6 +355,7 @@ router.post("/login", async (req, res) => {
             jwt.sign(
 
                 {
+
                     userId:
                         user._id,
 
@@ -362,8 +370,10 @@ router.post("/login", async (req, res) => {
                 process.env.JWT_SECRET,
 
                 {
+
                     expiresIn:
                         "7d"
+
                 }
 
             );
@@ -512,10 +522,15 @@ router.post("/forgot-password", async (req, res) => {
 
 
         console.log("---------------------------------");
+
         console.log("🔐 PASSWORD RESET CODE");
+
         console.log("Email:", normalizedEmail);
+
         console.log("Code:", resetCode);
+
         console.log("Expires:", resetCodeExpiry);
+
         console.log("---------------------------------");
 
 
@@ -558,8 +573,10 @@ Secure Password Recovery`,
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>
         StartupConnect Password Reset
@@ -646,6 +663,7 @@ Hello ${user.name},
 
 </p>
 
+
 <p style="
     font-size: 15px;
     line-height: 1.6;
@@ -658,6 +676,7 @@ your StartupConnect password.
 
 </p>
 
+
 <p style="
     font-size: 15px;
     line-height: 1.6;
@@ -668,6 +687,7 @@ your StartupConnect password.
 Your verification code is:
 
 </p>
+
 
 <table
     width="100%"
@@ -704,6 +724,7 @@ ${resetCode}
 
 </table>
 
+
 <p style="
     font-size: 14px;
     line-height: 1.6;
@@ -717,6 +738,7 @@ This code expires in
 
 </p>
 
+
 <p style="
     font-size: 14px;
     line-height: 1.6;
@@ -728,6 +750,7 @@ verification page to continue resetting
 your password.
 
 </p>
+
 
 <p style="
     font-size: 14px;
