@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Funding Tracker</title>
+    <title>StartupConnect Funding</title>
 
     <link rel="stylesheet" href="funding.css">
 
@@ -15,47 +15,413 @@
 
 </head>
 
+
 <body>
+
 
     <div class="container">
 
-        <h1>💰 Startup Funding Tracker</h1>
 
-        <div class="card">
+        <!-- ================================= -->
+        <!-- FUNDING LOGIN PORTAL -->
+        <!-- ================================= -->
 
-            <h2>Funding Progress</h2>
+        <div id="loginPortal" class="card">
 
-            <div class="progress">
 
-                <div id="progressBar"></div>
+            <h1>🔐 Funding Portal</h1>
+
+
+            <p>
+                Login to access the StartupConnect funding portal.
+            </p>
+
+
+            <form id="fundingLoginForm">
+
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Enter your email"
+                    required
+                >
+
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Enter your password"
+                    required
+                >
+
+
+                <button type="submit">
+
+                    🔓 Login to Funding Portal
+
+                </button>
+
+
+            </form>
+
+
+            <p id="loginMessage"></p>
+
+
+            <div class="register-link">
+
+                <p>
+                    Don't have a StartupConnect account?
+                </p>
+
+
+                <button
+                    type="button"
+                    onclick="window.location.href='register.html'"
+                >
+
+                    Create Account
+
+                </button>
 
             </div>
 
-            <h3 id="progressText">$0 Raised of $100000 Goal</h3>
 
-            <input type="number" id="amount" placeholder="Enter Investment Amount">
+        </div>
 
-            <button onclick="addFunding()">
 
-                Add Investment
+
+        <!-- ================================= -->
+        <!-- FUNDING PORTAL -->
+        <!-- ================================= -->
+
+        <div id="fundingPortal" style="display:none;">
+
+
+            <h1>💰 Startup Funding Tracker</h1>
+
+
+            <div class="card">
+
+
+                <h2>Funding Progress</h2>
+
+
+                <div class="progress">
+
+                    <div id="progressBar"></div>
+
+                </div>
+
+
+                <h3 id="progressText">
+                    $0 Raised of $100000 Goal
+                </h3>
+
+
+                <input
+                    type="number"
+                    id="amount"
+                    placeholder="Enter Investment Amount"
+                    min="1"
+                >
+
+
+                <button onclick="addFunding()">
+
+                    Add Investment
+
+                </button>
+
+
+            </div>
+
+
+
+            <div class="history">
+
+
+                <h2>Investment History</h2>
+
+
+                <ul id="historyList">
+
+                </ul>
+
+
+            </div>
+
+
+
+            <button
+                type="button"
+                onclick="logoutFunding()"
+            >
+
+                🔒 Logout
 
             </button>
 
-        </div>
-
-        <div class="history">
-
-            <h2>Investment History</h2>
-
-            <ul id="historyList">
-
-            </ul>
 
         </div>
+
 
     </div>
 
+
+
     <script src="funding.js"></script>
+
+
+    <script>
+
+
+        /*
+         * ==========================================
+         * FUNDING LOGIN SYSTEM
+         * ==========================================
+         */
+
+
+        const loginPortal =
+            document.getElementById("loginPortal");
+
+        const fundingPortal =
+            document.getElementById("fundingPortal");
+
+        const loginForm =
+            document.getElementById("fundingLoginForm");
+
+        const loginMessage =
+            document.getElementById("loginMessage");
+
+
+
+        /*
+         * Show login portal
+         */
+
+        function showLoginPortal() {
+
+            loginPortal.style.display = "block";
+
+            fundingPortal.style.display = "none";
+
+        }
+
+
+
+        /*
+         * Show funding portal
+         */
+
+        function showFundingPortal() {
+
+            loginPortal.style.display = "none";
+
+            fundingPortal.style.display = "block";
+
+        }
+
+
+
+        /*
+         * Check whether user is already logged in
+         */
+
+        function checkFundingLogin() {
+
+
+            const token =
+                localStorage.getItem("token");
+
+
+            if (token) {
+
+                showFundingPortal();
+
+            } else {
+
+                showLoginPortal();
+
+            }
+
+        }
+
+
+
+        /*
+         * Login
+         */
+
+        loginForm.addEventListener(
+            "submit",
+            async function (event) {
+
+
+                event.preventDefault();
+
+
+                const email =
+                    document
+                        .getElementById("loginEmail")
+                        .value
+                        .trim();
+
+
+                const password =
+                    document
+                        .getElementById("loginPassword")
+                        .value;
+
+
+                loginMessage.textContent =
+                    "Logging in...";
+
+
+                try {
+
+
+                    const response =
+                        await fetch(
+                            "/api/auth/login",
+                            {
+
+                                method: "POST",
+
+                                headers: {
+
+                                    "Content-Type":
+                                        "application/json"
+
+                                },
+
+                                body: JSON.stringify({
+
+                                    email: email,
+
+                                    password: password
+
+                                })
+
+                            }
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            data.message ||
+                            "Invalid email or password"
+                        );
+
+                    }
+
+
+
+                    /*
+                     * Get authentication token
+                     */
+
+                    const token =
+                        data.token ||
+                        data.data?.token ||
+                        data.accessToken;
+
+
+
+                    if (!token) {
+
+                        throw new Error(
+                            "Login succeeded but authentication token was not returned."
+                        );
+
+                    }
+
+
+
+                    /*
+                     * Save token
+                     */
+
+                    localStorage.setItem(
+                        "token",
+                        token
+                    );
+
+
+
+                    loginMessage.textContent =
+                        "✅ Login successful!";
+
+
+                    setTimeout(
+                        function () {
+
+                            showFundingPortal();
+
+                        },
+                        500
+                    );
+
+
+                } catch (error) {
+
+
+                    console.error(
+                        "Funding login error:",
+                        error
+                    );
+
+
+                    loginMessage.textContent =
+                        "❌ " + error.message;
+
+                }
+
+            }
+        );
+
+
+
+        /*
+         * Logout
+         */
+
+        function logoutFunding() {
+
+
+            localStorage.removeItem("token");
+
+
+            showLoginPortal();
+
+
+            loginForm.reset();
+
+
+            loginMessage.textContent =
+                "You have been logged out.";
+
+        }
+
+
+
+        /*
+         * Start page
+         */
+
+        checkFundingLogin();
+
+
+    </script>
+
 
 </body>
 

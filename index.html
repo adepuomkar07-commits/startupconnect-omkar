@@ -11,9 +11,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -21,12 +23,16 @@
             font-family: 'Poppins', sans-serif;
         }
 
+
         body {
             background: #f5f7fb;
             color: #333;
         }
 
-        /* Header */
+
+        /* =========================
+           HEADER
+        ========================= */
 
         header {
             background: linear-gradient(135deg, #0f62fe, #2563eb);
@@ -37,9 +43,11 @@
             color: white;
         }
 
+
         header h2 {
             font-size: 30px;
         }
+
 
         nav a {
             color: white;
@@ -49,35 +57,47 @@
             transition: .3s;
         }
 
+
         nav a:hover {
             color: #FFD700;
         }
 
-        /* Hero */
+
+        /* =========================
+           HERO
+        ========================= */
 
         .hero {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 60px;
             padding: 70px 8%;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
+            min-height: 500px;
         }
+
 
         .hero-text {
             max-width: 600px;
+            flex: 1;
         }
+
 
         .hero-text h1 {
             font-size: 52px;
+            line-height: 1.2;
             margin-bottom: 20px;
             color: #0f172a;
         }
+
 
         .hero-text p {
             font-size: 18px;
             line-height: 1.8;
             margin-bottom: 30px;
         }
+
 
         .hero-text button {
             padding: 16px 40px;
@@ -90,22 +110,104 @@
             transition: .3s;
         }
 
+
         .hero-text button:hover {
             background: #0046d5;
             transform: translateY(-3px);
         }
 
-        .hero img {
+
+        /* =========================
+           HERO VISUAL
+        ========================= */
+
+        .hero-visual {
             width: 500px;
             max-width: 100%;
-            border-radius: 20px;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
         }
 
-        /* Section */
+
+        .visual-card {
+            width: 100%;
+            min-height: 350px;
+            padding: 40px 30px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #0f62fe, #4f46e5);
+            color: white;
+            box-shadow: 0 25px 50px rgba(15, 98, 254, 0.25);
+            text-align: center;
+            overflow: hidden;
+        }
+
+
+        .visual-icon {
+            width: 85px;
+            height: 85px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .visual-icon i {
+            font-size: 42px;
+            color: #FFD700;
+        }
+
+
+        .visual-card h3 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+
+        .visual-card p {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+
+        .visual-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+
+        .visual-stats div {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 16px 8px;
+            border-radius: 15px;
+        }
+
+
+        .visual-stats strong {
+            display: block;
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+
+        .visual-stats span {
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           SECTIONS
+        ========================= */
 
         section {
             padding: 70px 8%;
         }
+
 
         .title {
             text-align: center;
@@ -114,16 +216,19 @@
             color: #0f62fe;
         }
 
+
         .cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 25px;
         }
 
+
         .card-link {
             text-decoration: none;
             color: inherit;
         }
+
 
         .card {
             background: white;
@@ -134,9 +239,11 @@
             text-align: center;
         }
 
+
         .card:hover {
             transform: translateY(-8px);
         }
+
 
         .card i {
             font-size: 45px;
@@ -144,11 +251,15 @@
             margin-bottom: 15px;
         }
 
+
         .card h3 {
             margin-bottom: 10px;
         }
 
-        /* CTA */
+
+        /* =========================
+           CTA
+        ========================= */
 
         .cta {
             background: linear-gradient(135deg, #2563eb, #4f46e5);
@@ -159,15 +270,18 @@
             padding: 60px;
         }
 
+
         .cta h2 {
             font-size: 40px;
             margin-bottom: 20px;
         }
 
+
         .cta p {
             font-size: 20px;
             margin-bottom: 30px;
         }
+
 
         .cta button {
             padding: 15px 35px;
@@ -178,11 +292,15 @@
             cursor: pointer;
         }
 
+
         .cta button:hover {
             background: #ffc400;
         }
 
-        /* Footer */
+
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
             background: #0f172a;
@@ -192,28 +310,163 @@
             margin-top: 50px;
         }
 
+
         footer p {
             margin-top: 10px;
             color: #ccc;
         }
 
-        @media(max-width:900px) {
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media(max-width: 1100px) {
+
+            .hero {
+                gap: 35px;
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+
+
+            .hero-text h1 {
+                font-size: 44px;
+            }
+
+
+            .hero-visual {
+                width: 450px;
+            }
+
+        }
+
+
+        @media(max-width: 900px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+
+            nav {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+
+
+            nav a {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+
 
             .hero {
                 flex-direction: column;
                 text-align: center;
+                flex-wrap: wrap;
+                padding-top: 50px;
             }
 
-            .hero img {
-                margin-top: 40px;
+
+            .hero-text {
+                max-width: 700px;
+            }
+
+
+            .hero-text h1 {
+                font-size: 42px;
+            }
+
+
+            .hero-visual {
+                width: 100%;
+                max-width: 550px;
+                margin-top: 20px;
             }
 
         }
+
+
+        @media(max-width: 600px) {
+
+            header h2 {
+                font-size: 25px;
+            }
+
+
+            .hero {
+                padding: 45px 6%;
+            }
+
+
+            .hero-text h1 {
+                font-size: 34px;
+            }
+
+
+            .hero-text p {
+                font-size: 16px;
+            }
+
+
+            .visual-card {
+                padding: 35px 20px;
+            }
+
+
+            .visual-card h3 {
+                font-size: 23px;
+            }
+
+
+            .visual-stats {
+                gap: 8px;
+            }
+
+
+            .visual-stats div {
+                padding: 12px 5px;
+            }
+
+
+            .visual-stats span {
+                font-size: 10px;
+            }
+
+
+            .title {
+                font-size: 30px;
+            }
+
+
+            .cta {
+                margin: 30px 5%;
+                padding: 40px 20px;
+            }
+
+
+            .cta h2 {
+                font-size: 30px;
+            }
+
+        }
+
     </style>
 
 </head>
 
+
 <body>
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
 
     <header>
 
@@ -221,64 +474,163 @@
 
         <nav>
 
-            <a href="index.html">Home</a>
+            <a href="index.html">
+                Home
+            </a>
 
-            <a href="#features">Features</a>
+            <a href="#features">
+                Features
+            </a>
 
-            <a href="#process">Process</a>
+            <a href="#process">
+                Process
+            </a>
 
-            <a href="investors.html">Investors</a>
+            <a href="investors.html">
+                Investors
+            </a>
 
-            <a href="contact.html">Contact</a>
+            <a href="contact.html">
+                Contact
+            </a>
 
-            <a href="login.html">Login</a>
+            <a href="login.html">
+                Login
+            </a>
 
         </nav>
 
     </header>
 
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
     <section class="hero">
+
 
         <div class="hero-text">
 
             <h1>
-
                 Where Great Ideas Meet Great Investors
-
             </h1>
+
 
             <p>
 
-                StartupConnect is a platform where founders can register their startups, upload business ideas, receive
-                AI feedback, connect with mentors, and pitch to investors.
+                StartupConnect is a platform where founders can register
+                their startups, upload business ideas, receive AI feedback,
+                connect with mentors, and pitch to investors.
 
             </p>
+
 
             <a href="register.html">
 
                 <button>
-
                     Get Started
-
                 </button>
 
             </a>
 
         </div>
 
-        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55?w=1000">
+
+
+        <!-- HERO VISUAL -->
+
+        <div class="hero-visual">
+
+            <div class="visual-card">
+
+
+                <div class="visual-icon">
+
+                    <i class="fa-solid fa-lightbulb"></i>
+
+                </div>
+
+
+                <h3>
+                    Innovate. Connect. Grow.
+                </h3>
+
+
+                <p>
+                    Turn your ideas into real-world opportunities.
+                </p>
+
+
+                <div class="visual-stats">
+
+
+                    <div>
+
+                        <strong>
+                            🤖
+                        </strong>
+
+                        <span>
+                            AI Evaluation
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            🤝
+                        </strong>
+
+                        <span>
+                            Investors
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            🚀
+                        </strong>
+
+                        <span>
+                            Startups
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
 
     </section>
 
+
+
+    <!-- =========================
+         PLATFORM FEATURES
+    ========================= -->
+
     <section id="features">
 
+
         <h2 class="title">
-
             Platform Features
-
         </h2>
 
+
         <div class="cards">
+
 
             <a href="share-idea.html" class="card-link">
 
@@ -286,13 +638,19 @@
 
                     <i class="fa-solid fa-lightbulb"></i>
 
-                    <h3>Share Startup Idea</h3>
+                    <h3>
+                        Share Startup Idea
+                    </h3>
 
-                    <p>Submit your innovative startup ideas.</p>
+                    <p>
+                        Submit your innovative startup ideas.
+                    </p>
 
                 </div>
 
             </a>
+
+
 
             <a href="upload-pitch.html" class="card-link">
 
@@ -300,27 +658,39 @@
 
                     <i class="fa-solid fa-file-arrow-up"></i>
 
-                    <h3>Upload Pitch Deck</h3>
+                    <h3>
+                        Upload Pitch Deck
+                    </h3>
 
-                    <p>Upload your business presentation.</p>
+                    <p>
+                        Upload your business presentation.
+                    </p>
 
                 </div>
 
             </a>
 
-            <a href="ai-evaluation.html" class="card-link">
+
+
+            <a href="evaluation.html" class="card-link">
 
                 <div class="card">
 
                     <i class="fa-solid fa-robot"></i>
 
-                    <h3>AI Evaluation</h3>
+                    <h3>
+                        AI Evaluation
+                    </h3>
 
-                    <p>Receive AI-powered startup analysis.</p>
+                    <p>
+                        Receive AI-powered startup analysis.
+                    </p>
 
                 </div>
 
             </a>
+
+
 
             <a href="funding.html" class="card-link">
 
@@ -328,109 +698,160 @@
 
                     <i class="fa-solid fa-sack-dollar"></i>
 
-                    <h3>Funding</h3>
+                    <h3>
+                        Funding
+                    </h3>
 
-                    <p>Track funding progress and investors.</p>
+                    <p>
+                        Track funding progress and investors.
+                    </p>
 
                 </div>
 
             </a>
 
+
         </div>
+
 
     </section>
 
+
+
+    <!-- =========================
+         PROCESS
+    ========================= -->
+
     <section id="process">
 
+
         <h2 class="title">
-
             How StartupConnect Works
-
         </h2>
 
+
         <div class="cards">
+
 
             <div class="card">
 
                 <i class="fa-solid fa-user-plus"></i>
 
-                <h3>Register</h3>
+                <h3>
+                    Register
+                </h3>
 
-                <p>Create your founder account.</p>
+                <p>
+                    Create your founder account.
+                </p>
 
             </div>
+
+
 
             <div class="card">
 
                 <i class="fa-solid fa-lightbulb"></i>
 
-                <h3>Share Idea</h3>
+                <h3>
+                    Share Idea
+                </h3>
 
-                <p>Submit your startup idea.</p>
+                <p>
+                    Submit your startup idea.
+                </p>
 
             </div>
+
+
 
             <div class="card">
 
                 <i class="fa-solid fa-robot"></i>
 
-                <h3>AI Review</h3>
+                <h3>
+                    AI Review
+                </h3>
 
-                <p>Get AI feedback and suggestions.</p>
+                <p>
+                    Get AI feedback and suggestions.
+                </p>
 
             </div>
+
+
 
             <div class="card">
 
                 <i class="fa-solid fa-handshake"></i>
 
-                <h3>Meet Investors</h3>
+                <h3>
+                    Meet Investors
+                </h3>
 
-                <p>Connect with investors and mentors.</p>
+                <p>
+                    Connect with investors and mentors.
+                </p>
 
             </div>
 
+
         </div>
+
 
     </section>
 
+
+
+    <!-- =========================
+         CTA
+    ========================= -->
+
     <section class="cta">
 
+
         <h2>
-
             Build the Next Unicorn Startup
-
         </h2>
 
+
         <p>
-
             Join StartupConnect today and start your entrepreneurial journey.
-
         </p>
+
 
         <a href="register.html">
 
             <button>
-
                 Join Now
-
             </button>
 
         </a>
 
+
     </section>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
 
     <footer>
 
-        <h2>🚀 StartupConnect</h2>
+
+        <h2>
+            🚀 StartupConnect
+        </h2>
+
 
         <p>
-
             Connecting Founders • Investors • Innovation
-
         </p>
 
+
     </footer>
+
 
 </body>
 
